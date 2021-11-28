@@ -303,7 +303,7 @@ model User {
 
 [`@default(cuid())`](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#cuid) creates globally unique IDs for you, which is perfect.
 
-2. Optional, but Relay makes life very easy if your API server follows the [GraphQL Connections Spec](https://relay.dev/assets/files/connections-932f4f2cdffd79724ac76373deb30dc8.htm). I have [orta/redwood-app-connections](https://github.com/orta/redwood-app-connections) for the explanation there.
+2. Optional, but Relay makes life very easy if your API server follows the [GraphQL Connections Spec](https://relay.dev/assets/files/connections-932f4f2cdffd79724ac76373deb30dc8.htm). I have [orta/redwood-app-connections](https://github.com/orta/redwood-app-connections) for the explanation there. There is a connection in [`web/src/components/User/Users/Users.tsx`](web/src/components/User/Users/Users.tsx) though [handling pagination](https://relay.dev/docs/api-reference/use-pagination-fragment/) is a good TODO.
 
 ## Mutations
 
@@ -358,6 +358,10 @@ This form is used in two places:
 
   Then later uses `<UserForm user={data.user} onSave={onSave} loading={loading} error={error} />`.
 
+
+## Long Term Maintenance
+
+Now that this repo is mostly complete and there is a full CRUD implementation of a User model in it. I have a sense of how much work would be necessary to do up-keep, and I think I'm willing to commit the time to converting my real app to use Relay and to live a little bit outside the Redwood Omakase.
 
 ## TODO
 
