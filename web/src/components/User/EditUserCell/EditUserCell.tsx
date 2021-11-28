@@ -8,7 +8,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import UserForm from 'src/components/User/UserForm'
 
 export const QUERY = gql`
-  query EditUserById($id: Int!) {
+  query EditUserById($id: ID!) {
     user: user(id: $id) {
       id
       name
@@ -20,7 +20,7 @@ export const QUERY = gql`
   }
 `
 const UPDATE_USER_MUTATION = gql`
-  mutation UpdateUserMutation($id: Int!, $input: UpdateUserInput!) {
+  mutation UpdateUserMutation($id: ID!, $input: UpdateUserInput!) {
     updateUser(id: $id, input: $input) {
       id
       name
@@ -34,9 +34,7 @@ const UPDATE_USER_MUTATION = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error.message}</div>
-)
+export const Failure = ({ error }: CellFailureProps) => <div className="rw-cell-error">{error.message}</div>
 
 export const Success = ({ user }: CellSuccessProps<EditUserById>) => {
   const [updateUser, { loading, error }] = useMutation(UPDATE_USER_MUTATION, {

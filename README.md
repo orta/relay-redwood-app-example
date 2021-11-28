@@ -1,6 +1,6 @@
 # Redwood with Relay
 
-Relay is a great GraphlQL API client for building scalable GraphQL driven projects.
+Relay is a great GraphQL API client for building scalable GraphQL driven projects. The mindshare for GraphQL clients is a bit like type-systems in JS a few years ago, the vast majority of people use JavaScript (Apollo) and think that the freedom and flexibility is great (Apollo is a good client). However, if you work with a solid type system in JS, you've _very_ unlikely to go back. Relay is TypeScript to Apollo's JavaScript, featuring an incredibly tight feedback cycle and the removal of an entire suite of developer and user concerns in exchange for some restraints on how you build.
 
 ## Setting up the client
 
@@ -183,6 +183,126 @@ web/src/components/__generated__
 
 (I have some stubbed stuff in here)
 
-## Next
 
-I'd like to get all the CRUD on the user model working before this is called "finished".
+### Run the Compiler in Watch Mode with your App
+
+Run `yarn rw setup webpack` to  get a webpack config, we're not actually going to use it to do any config stuff, but to open the Relay Compiler in watch mode whenever our dev server is running:
+
+```diff
+const { spawn } = require('child_process')
+
++ let relayCompiler = undefined
++ process.on('exit', (code) => {
++   relayCompiler.kill(code)
++ })
+
+/** @returns {import('webpack').Configuration} Webpack Configuration */
+module.exports = (config, { mode }) => {
+  if (mode === 'development') {
++    relayCompiler = spawn('yarn', ['relay-compiler', '--watch'], { shell: true })
++
++    relayCompiler.stdout.on('data', (data) => {
++      console.log(`Relay: ${data}`.trim())
++    })
++
++    relayCompiler.stderr.on('data', (data) => {
++      console.log(`Relay ERR: ${data}`.trim())
++    })
+  }
+
+  // Add custom rules for your project
+  // config.module.rules.push(YOUR_RULE)
+
+  // Add custom plugins for your project
+  // config.plugins.push(YOUR_PLUGIN)
+
+  return config
+}
+```
+
+### Making the GraphQL API Relay Compliant
+
+Relay makes two requests for your API:
+
+1. You have a global UUID system of [Object Identification](https://relay.dev/docs/guides/graphql-server-specification/#object-identification), and all models have `id: ID!`
+
+In our app, we can add a new schema file: `api/src/graphql/identification.sdl.ts` with:
+
+```ts
+export const schema = gql`
+  scalar ID
+
+  # An object with a Globally Unique ID
+  interface Node {
+    id: ID!
+  }
+`
+```
+
+Effectively telling the GraphQL server that `ID` is a new scalar (we'll use `string`s), then we make the user conform:
+
+```ts
+export const schema = gql`
++  type User implements Node {
+-  type User {
++   id: ID!
+-   id: String!
+    name: String
+    email: String!
+    profileViews: Int!
+    city: String!
+    country: String!
+  }
+
+  type Query {
+    users: [User!]! @requireAuth
++   user(id: ID!): User @requireAuth
+-   user(id: String!): User @requireAuth
+  }
+
+  input CreateUserInput {
+    name: String
+    email: String!
+    profileViews: Int!
+    city: String!
+    country: String!
+  }
+
+  input UpdateUserInput {
+    name: String
+    email: String
+    profileViews: Int
+    city: String
+    country: String
+  }
+
+  type Mutation {
+    createUser(input: CreateUserInput!): User! @requireAuth
++   updateUser(id: ID!, input: UpdateUserInput!): User! @requireAuth
+-   updateUser(id: String!, input: UpdateUserInput!): User! @requireAuth
++   deleteUser(id: ID!): User! @requireAuth
+-   deleteUser(id: String!): User! @requireAuth
+  }
+`
+```
+
+That tells the SDL that we're using an opaque `ID` in our system. Prisma can generate these for you via:
+
+```prisma
+model User {
+  id           String  @id @default(cuid())
+  name         String?
+  email        String  @unique
+  profileViews Int     @default(0)
+  city         String
+  country      String
+}
+```
+
+[`@default(cuid())`](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#cuid) creates globally unique IDs for you, which is perfect.
+
+## TODO
+
+- [x] Run relay-compiler on `yarn rw dev`
+- [] Do the whole CRUD dance
+- [] Use fragments somewhere
