@@ -35,24 +35,12 @@ function UsersPage() {
   )
 }
 
-// export default UsersPage
+function Loading() {
+  return <div>Loading</div>
+}
 
 export default () => (
-  <Suspense fallback={<div>loading</div>}>
+  <Suspense fallback={<Loading />}>
     <UsersPage />
   </Suspense>
 )
-
-// class ErrorBoundary extends React.Component<any, any> {
-//   static getDerivedStateFromError(error): any {
-//     // Set some state derived from the caught error
-//     console.log({ error })
-//     return { error: error }
-//   }
-
-//   render() {
-//     console.log({ error: this.state })
-
-//     return <div>err</div>
-//   }
-// }

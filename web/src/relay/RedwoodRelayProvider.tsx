@@ -35,7 +35,6 @@ const RelayProviderWithFetchConfig: React.FunctionComponent<{
     // Relay offers a lot of info in the original outgoing request
     // { cacheID: "64f3434db5fcda977516dfe1b15852f7", id: null, metadata: {}, name: "UsersPageQuery", operationKind: "query", text: "...", variables: {} }
     // We re-format it to fit the setup inside graphql-helix
-
     const body = {
       query: operation.text,
       operationName: operation.name,
@@ -69,17 +68,6 @@ const RelayProviderWithFetchConfig: React.FunctionComponent<{
   )
 }
 
-export const createHooks = (env: Environment): GraphQLHooks => {
-  return {
-    useQuery: (query, opts) => {
-      console.log({ useQuery: true, query, opts, env })
-      return useLazyLoadQuery
-    },
-    useMutation: (mutation, opts) => {
-      return useMutation
-    },
-  }
-}
 
 export const createDefaultEnvironment = (fetch: FetchFunction) => {
   // // Export a singleton instance of Relay Environment configured with our network function:
