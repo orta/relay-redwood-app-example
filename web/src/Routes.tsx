@@ -19,7 +19,6 @@ const Routes = () => {
         <Route path="/users/{id}" page={UserUserPage} name="user" />
         <Route path="/users" page={UserUsersPage} name="users" />
       </Set>
-      <Route path="/my-page" page={MyPagePage} name="myPage" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )

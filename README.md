@@ -1,6 +1,8 @@
 # Redwood with Relay
 
-Relay is a great GraphQL API client for building scalable GraphQL driven projects. The mindshare for GraphQL clients is a bit like type-systems in JS a few years ago, the vast majority of people use JavaScript (Apollo) and think that the freedom and flexibility is great (Apollo is a good client). However, if you work with a solid type system in JS, you've _very_ unlikely to go back. Relay is TypeScript to Apollo's JavaScript, featuring an incredibly tight feedback cycle and the removal of an entire suite of developer and user concerns in exchange for some restraints on how you build.
+Relay is a great GraphQL API client for building scalable GraphQL driven projects. The mindshare for GraphQL clients is a bit like type-systems in JS a few years ago, the vast majority of people use JavaScript (Apollo) and think that the freedom and flexibility is great (Apollo is a good client). However, if you work with a solid type system in JS, you're _very_ unlikely to go back.
+
+Relay is TypeScript to Apollo's JavaScript, featuring an incredibly tight feedback cycle and the removal of an entire suite of developer and user concerns in exchange for some restraints on how you build.
 
 ## Setting up the client
 
@@ -303,8 +305,63 @@ model User {
 
 2. Optional, but Relay makes life very easy if your API server follows the [GraphQL Connections Spec](https://relay.dev/assets/files/connections-932f4f2cdffd79724ac76373deb30dc8.htm). I have [orta/redwood-app-connections](https://github.com/orta/redwood-app-connections) for the explanation there.
 
+## Mutations
+
+Mutations require no special casing in comparison to the Relay Docs, here are some examples:
+
+- [Delete User Button](./web/src/components/User/DeleteUserButton.tsx) - inline mutation hook
+- [Create User](./web/src/pages/User/NewUserPage/NewUserPage.tsx) - imperitive mutation function which can be called in other places if needed
+- [Edit User](./web/src/pages/User/EditUserPage/EditUserPage.tsx) - imperitive mutation function + query (probably a bit too much going on in this component though)
+
+## Fragments
+
+One of Relay's greatest abilities is [data-masking](https://youtu.be/1Z3loALSVQM?t=1152) (e.g. Relay passes data down your tree, not you) this is done via [GraphQL fragments](https://graphql.org/learn/queries/#fragments).
+
+You can see this in action in the `UserForm`, which has:
+
+```ts
+import { UserForm_user$key } from 'src/components/__generated__/UserForm_user.graphql'
+
+const UserForm = (props: { user?: UserForm_user$key; ... }) => {
+
+const data = useFragment(
+    graphql`
+      fragment UserForm_user on User {
+        id
+        name
+        email
+        profileViews
+        city
+        country
+      }
+    `,
+    props.user
+  )
+  // ...
+}
+```
+
+This form is used in two places:
+
+- NewUserPage, which _does not_ have a query (there's nothing to grab for a new user account)
+- EditUserPage, which does have a query, which looks like:
+
+  ```ts
+  const EditUserPageReq = graphql`
+    query EditUserPageQuery($id: ID!) {
+      user(id: $id) {
+        ...UserForm_user
+      }
+    }
+  `
+  ```
+
+  Then later uses `<UserForm user={data.user} onSave={onSave} loading={loading} error={error} />`.
+
+
 ## TODO
 
 - [x] Run relay-compiler on `yarn rw dev`
-- [] Do the whole CRUD dance
-- [] Use fragments somewhere
+- [x] Do the whole CRUD dance
+- [x] Use fragments somewhere
+- [] Preload queries by facading a Link and `routes`?

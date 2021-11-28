@@ -9,8 +9,12 @@ export type UserPageQueryVariables = {
 };
 export type UserPageQueryResponse = {
     readonly user: {
+        readonly id: string;
         readonly name: string | null;
         readonly email: string;
+        readonly profileViews: number;
+        readonly city: string;
+        readonly country: string;
     } | null;
 };
 export type UserPageQuery = {
@@ -25,9 +29,12 @@ query UserPageQuery(
   $id: ID!
 ) {
   user(id: $id) {
+    id
     name
     email
-    id
+    profileViews
+    city
+    country
   }
 }
 */
@@ -42,46 +49,72 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "Variable",
-    "name": "id",
-    "variableName": "id"
+    "alias": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id"
+      }
+    ],
+    "concreteType": "User",
+    "kind": "LinkedField",
+    "name": "user",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "name",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "email",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "profileViews",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "city",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "country",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
   }
-],
-v2 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-},
-v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "email",
-  "storageKey": null
-};
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "UserPageQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": (v1/*: any*/),
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "user",
-        "plural": false,
-        "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/)
-        ],
-        "storageKey": null
-      }
-    ],
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -90,38 +123,17 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "UserPageQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": (v1/*: any*/),
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "user",
-        "plural": false,
-        "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ]
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "c46dbd750a65c737837171c9384ebe62",
+    "cacheID": "4dfb207ef9affa80a5da56a238bbd442",
     "id": null,
     "metadata": {},
     "name": "UserPageQuery",
     "operationKind": "query",
-    "text": "query UserPageQuery(\n  $id: ID!\n) {\n  user(id: $id) {\n    name\n    email\n    id\n  }\n}\n"
+    "text": "query UserPageQuery(\n  $id: ID!\n) {\n  user(id: $id) {\n    id\n    name\n    email\n    profileViews\n    city\n    country\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'b56003df6d64314d4ce4ee97b65788bf';
+(node as any).hash = '4ede9883ecfae65deebd0856cd217e77';
 export default node;
