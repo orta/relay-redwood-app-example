@@ -1,28 +1,60 @@
-# Redwood
+# Redwood with Relay
 
-> **NOTICE:** RedwoodJS is very close to a stable version 1.0. In the last two years,
-> the project has matured significantly and is already used in production by a number
-> of startups. We intend to have a 1.0 release candidate before the end of 2021 and
-> to release a truly production-ready 1.0 in early 2022.
+Relay is a great GraphlQL API client for building scalable GraphQL driven projects.
 
-## Getting Started
+### Setting up the client
 
-- [Tutorial](https://redwoodjs.com/tutorial/welcome-to-redwood): getting started and complete overview guide.
-- [Docs](https://redwoodjs.com/docs/introduction): using the Redwood Router, handling assets and files, list of command-line tools, and more.
-- [Redwood Community](https://community.redwoodjs.com): get help, share tips and tricks, and collaborate on everything about RedwoodJS.
+Add the client deps:
 
-### Setup
+- `yarn workspace web add react-relay`
+- `yarn workspace web  --dev relay-config`
 
-We use Yarn as our package manager. To get the dependencies installed, just do this in the root directory:
+Create `relay.config.js`:
 
-```terminal
-yarn install
+```js
+module.exports = {
+  src: './web',
+  schema: '.redwood/schema.graphql',
+  extensions: ['tsx'],
+  language: 'typescript',
+  artifactDirectory: './web/src/__generated__',
+  exclude: ['**/node_modules/**', '**/__mocks__/**', '**/__generated__/**'],
+}
 ```
 
-### Fire it up
+Hook up the babel plugin:
 
-```terminal
-yarn redwood dev
+```sh
+yarn add --dev babel-plugin-relay "graphql@^15.0.0" -W
 ```
 
-Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.redwood/functions/*`.
+Then edit the babel config `babel.config.js`:
+
+```diff
+/** @type {import('@babel/core').TransformOptions} */
+module.exports = {
+  presets: ['@redwoodjs/core/config/babel-preset'],
++  plugins: ['relay'],
+}
+```
+
+Set up the compiler:
+
+```sh
+yarn -W add --dev relay-compiler
+```
+
+Add the TS Relay plugin:
+
+```
+yarn -W add --dev relay-compiler-language-typescript
+```
+
+And add the script to the root workspace: `/package.json`:
+
+```sh
+{
+  "relay": "relay-compiler"
+}
+```
+
