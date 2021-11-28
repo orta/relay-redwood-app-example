@@ -58,3 +58,11 @@ And add the script to the root workspace: `/package.json`:
 }
 ```
 
+### Setting up a data model
+
+I then edited the schema.prisma to [whatever it is now](./api/db/schema.prisma).
+
+### Prisma -> Relay ID
+
+
+
