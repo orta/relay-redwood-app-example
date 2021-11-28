@@ -57,17 +57,16 @@ const RelayProviderWithFetchConfig: React.FunctionComponent<{
   }
 
   const env = environment || createDefaultEnvironment(fetcher)
-  const hooks = createHooks(env)
+  // const hooks = createHooks(env)
 
   return (
     <RelayEnvironmentProvider environment={env}>
-      <GraphQLHooksProvider useQuery={hooks.useQuery} useMutation={hooks.useMutation}>
-        {children}
-      </GraphQLHooksProvider>
+      {/* <GraphQLHooksProvider useQuery={hooks.useQuery} useMutation={hooks.useMutation}> */}
+      {children}
+      {/* </GraphQLHooksProvider> */}
     </RelayEnvironmentProvider>
   )
 }
-
 
 export const createDefaultEnvironment = (fetch: FetchFunction) => {
   // // Export a singleton instance of Relay Environment configured with our network function:

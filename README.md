@@ -239,9 +239,9 @@ export const schema = gql`
 `
 ```
 
-Effectively telling the GraphQL server that `ID` is a new scalar (we'll use `string`s), then we make the user conform:
+Effectively telling the GraphQL server that `ID` is a new scalar (we'll use `String` under the hood), then we make the user conform:
 
-```ts
+```diff
 export const schema = gql`
 +  type User implements Node {
 -  type User {
@@ -300,6 +300,8 @@ model User {
 ```
 
 [`@default(cuid())`](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#cuid) creates globally unique IDs for you, which is perfect.
+
+2. Optional, but Relay makes life very easy if your API server follows the [GraphQL Connections Spec](https://relay.dev/assets/files/connections-932f4f2cdffd79724ac76373deb30dc8.htm). I have [orta/redwood-app-connections](https://github.com/orta/redwood-app-connections) for the explanation there.
 
 ## TODO
 

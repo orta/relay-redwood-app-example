@@ -8,9 +8,19 @@ export const schema = gql`
     country: String!
   }
 
+  type UserEdge {
+    node: User!
+    cursor: String!
+  }
+
+  type UserConnection {
+    edges: [UserEdge]
+    pageInfo: PageInfo!
+  }
+
   type Query {
-    users: [User!]! @requireAuth
-    user(id: ID!): User @requireAuth
+    users(first: Int, last: Int, before: String, after: String): UserConnection @skipAuth
+    user(id: ID!): User @skipAuth
   }
 
   input CreateUserInput {
@@ -30,8 +40,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createUser(input: CreateUserInput!): User! @requireAuth
-    updateUser(id: ID!, input: UpdateUserInput!): User! @requireAuth
-    deleteUser(id: ID!): User! @requireAuth
+    createUser(input: CreateUserInput!): User! @skipAuth
+    updateUser(id: ID!, input: UpdateUserInput!): User! @skipAuth
+    deleteUser(id: ID!): User! @skipAuth
   }
 `

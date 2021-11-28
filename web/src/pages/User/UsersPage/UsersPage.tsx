@@ -6,20 +6,28 @@ import type { UsersPageQuery } from 'src/components/__generated__/UsersPageQuery
 
 const UsersQuery = graphql`
   query UsersPageQuery {
-    users {
-      id
-      name
-      email
+    users(first: 5) {
+      edges {
+        node {
+          id
+          name
+          email
+        }
+      }
+      pageInfo {
+        endCursor
+      }
     }
   }
 `
 
 function UsersPage() {
   const data = useLazyLoadQuery<UsersPageQuery>(UsersQuery, {})
+  const users = data.users.edges.map((n) => n.node)
 
   return (
     <div>
-      {(data.users || []).map((user) => (
+      {(users || []).map((user) => (
         <Link key={user.id} to={routes.user({ id: user.id })}>
           {user.name}
         </Link>

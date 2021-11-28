@@ -6,11 +6,18 @@ import { ConcreteRequest } from "relay-runtime";
 
 export type UsersPageQueryVariables = {};
 export type UsersPageQueryResponse = {
-    readonly users: ReadonlyArray<{
-        readonly id: string;
-        readonly name: string | null;
-        readonly email: string;
-    }>;
+    readonly users: {
+        readonly edges: ReadonlyArray<{
+            readonly node: {
+                readonly id: string;
+                readonly name: string | null;
+                readonly email: string;
+            };
+        } | null> | null;
+        readonly pageInfo: {
+            readonly endCursor: string;
+        };
+    } | null;
 };
 export type UsersPageQuery = {
     readonly response: UsersPageQueryResponse;
@@ -21,10 +28,17 @@ export type UsersPageQuery = {
 
 /*
 query UsersPageQuery {
-  users {
-    id
-    name
-    email
+  users(first: 5) {
+    edges {
+      node {
+        id
+        name
+        email
+      }
+    }
+    pageInfo {
+      endCursor
+    }
   }
 }
 */
@@ -33,35 +47,81 @@ const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "alias": null,
-    "args": null,
-    "concreteType": "User",
+    "args": [
+      {
+        "kind": "Literal",
+        "name": "first",
+        "value": 5
+      }
+    ],
+    "concreteType": "UserConnection",
     "kind": "LinkedField",
     "name": "users",
-    "plural": true,
+    "plural": false,
     "selections": [
       {
         "alias": null,
         "args": null,
-        "kind": "ScalarField",
-        "name": "id",
+        "concreteType": "UserEdge",
+        "kind": "LinkedField",
+        "name": "edges",
+        "plural": true,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "node",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "name",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "email",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
         "storageKey": null
       },
       {
         "alias": null,
         "args": null,
-        "kind": "ScalarField",
-        "name": "name",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "email",
+        "concreteType": "PageInfo",
+        "kind": "LinkedField",
+        "name": "pageInfo",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "endCursor",
+            "storageKey": null
+          }
+        ],
         "storageKey": null
       }
     ],
-    "storageKey": null
+    "storageKey": "users(first:5)"
   }
 ];
 return {
@@ -82,14 +142,14 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "64f3434db5fcda977516dfe1b15852f7",
+    "cacheID": "5ffdcc2e3a908ecb7069b92eb4922323",
     "id": null,
     "metadata": {},
     "name": "UsersPageQuery",
     "operationKind": "query",
-    "text": "query UsersPageQuery {\n  users {\n    id\n    name\n    email\n  }\n}\n"
+    "text": "query UsersPageQuery {\n  users(first: 5) {\n    edges {\n      node {\n        id\n        name\n        email\n      }\n    }\n    pageInfo {\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '7f5aa9079957cc97fa9fb8b13407bb56';
+(node as any).hash = 'eb6f41ac746b1927effe181654d1309f';
 export default node;

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@devoxa/prisma-relay-cursor-connection": "^2.0.3",
     "@redwoodjs/api": "0.38.3",
     "@redwoodjs/graphql-server": "0.38.3"
   }
