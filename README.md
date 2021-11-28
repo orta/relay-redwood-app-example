@@ -97,13 +97,15 @@ I then edited the schema.prisma to [whatever it is now](./api/db/schema.prisma),
 
 ## Cell No More
 
-Redwood allows you to be able to overwrite `useQuery` and `useMutation`, but I've not quite figured out how to get the types in match. These Redwood functions expect an unprocessed graphql query/mutation, but Relay relies on ahead-of-time work which means we can't use the global `gql` tag.
+Redwood allows you to be able to overwrite the Redwood provided `useQuery` and `useMutation`, but I've not quite figured out how to get the types in match. These Redwood functions expect an unprocessed graphql query/mutation, but Relay relies on ahead-of-time work which means we can't use the global `gql` tag.
 
-Anyway, it's likely if you're using Relay, you won't want to use the Cell abstraction as it won't handle merging API grabbing into a single request.
+That said, it's likely if you're using Relay, you won't want to use the [Cell](https://redwoodjs.com/docs/cells) abstraction as they don't handle merging API grabbing into a single request.
 
-## TBD:Preloading Queries
+## TBD: Preloading Queries
 
 I've not figured out about whether you can use the [pre-loading APIs](https://relay.dev/docs/api-reference/use-preloaded-query/), I'd need to understand the Redwood router a bit more first.
+
+So, we'll go with [`useLazyLoadQuery`](https://relay.dev/docs/api-reference/use-lazy-load-query/) which requires the component to be in the render tree before making API requests. This is the same behavior as an apollo version of Redwood, so it's not a biggie right now.
 
 ## A Component
 
