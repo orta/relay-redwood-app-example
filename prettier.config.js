@@ -7,6 +7,7 @@ module.exports = {
   semi: false,
   singleQuote: true,
   arrowParens: 'always',
+  printWidth: 140,
   overrides: [
     {
       files: 'Routes.*',
