@@ -4,6 +4,8 @@ Relay is a great GraphQL API client for building scalable GraphQL driven project
 
 Relay is TypeScript to Apollo's JavaScript, featuring an incredibly tight feedback cycle and the removal of an entire suite of developer and user concerns in exchange for some restraints on how you build.
 
+There's further Redwood-centered discussion in [their Show & Tell section](https://community.redwoodjs.com/t/example-app-of-redwood-with-relay/2568).
+
 ## Redwood and Relay Versions
 
 This example works with:
