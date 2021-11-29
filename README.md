@@ -4,6 +4,14 @@ Relay is a great GraphQL API client for building scalable GraphQL driven project
 
 Relay is TypeScript to Apollo's JavaScript, featuring an incredibly tight feedback cycle and the removal of an entire suite of developer and user concerns in exchange for some restraints on how you build.
 
+## Redwood and Relay Versions
+
+This example works with:
+
+- Relay 12, which is the last one using the JavaScript compiler, I will update this repo to the Relay Rust compiler when Relay 13 comes out.
+- Redwood 0.38, which still has babel files, I need to see how to make this work in 0.39
+
+
 ## Setting up the client
 
 The majority of the Relay setup lives in your web package, with just the babel change living in the root workspace.
