@@ -11,7 +11,7 @@ There's further Redwood-centered discussion in [their Show & Tell section](https
 This example works with:
 
 - Relay 12, which is the last one using the JavaScript compiler, I will update this repo to the Relay Rust compiler when Relay 13 comes out.
-- Redwood 0.38, which still has babel files, I need to see how to make this work in 0.39
+- Redwood 0.38, which still has babel files, I need to see how to make [the babel plugin work in 0.39](https://community.redwoodjs.com/t/v0-39-release-candidate-is-available-feedback-wanted/2552#release-notes-breaking-changes-and-code-modifications-3)
 
 
 ## Setting up the client
