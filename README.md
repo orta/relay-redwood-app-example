@@ -1,6 +1,6 @@
 # Redwood with Relay
 
-Relay is a great GraphQL API client for building scalable GraphQL driven projects. The mindshare for GraphQL clients is a bit like type-systems in JS a few years ago, the vast majority of people use JavaScript (Apollo) and think that the freedom and flexibility is great (Apollo is a good client and has a really low barrier to entry like JS). However, if you work with a solid type system in JS, you're _very_ unlikely to go back.
+Relay is a great GraphQL API client for building scalable GraphQL driven projects. The mindshare for GraphQL clients is a bit like type-systems in JS a few years ago, the vast majority of people use JavaScript (Apollo) and love the freedom and flexibility in the language (Apollo is a good GraphQL client and has a really low barrier to entry like JS). However, if you work with a solid type system in JS, you're _very_ unlikely to go back.
 
 Relay is TypeScript to Apollo's JavaScript, featuring an incredibly tight feedback cycle and the removal of an entire suite of developer and user concerns in exchange for some restraints on how you build.
 
