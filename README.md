@@ -13,6 +13,7 @@ This example works with:
 - Relay 12, which is the last one using the JavaScript compiler, I will update this repo to the Relay Rust compiler when Relay 13 is out.
 - Redwood 0.38, which still has babel files, I need to see how to make [the babel plugin work in 0.39](https://community.redwoodjs.com/t/v0-39-release-candidate-is-available-feedback-wanted/2552#release-notes-breaking-changes-and-code-modifications-3)
 
+That said, [Relay 12](https://github.com/facebook/relay/issues/3622) does not work with GraphQL 16 - and Redwood 0/39/1.0-rc0 use graphql 16.
 
 ## Setting up the client
 
