@@ -9,6 +9,7 @@ import { useState, Suspense } from 'react'
 import { AvailableRoutes, routes } from '@redwoodjs/router'
 
 type PageParams = Parameters<AvailableRoutes['editUser']>[0]
+
 const EditUserPage = ({ id }: PageParams) => {
   const [error, setError] = useState<Error>(undefined)
 
@@ -50,7 +51,7 @@ const EditUserPage = ({ id }: PageParams) => {
         }
       `,
       variables: { id, input },
-      onCompleted: (response) => {
+      onCompleted: () => {
         document.location = routes.users()
       },
       onError: setError,
