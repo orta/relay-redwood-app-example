@@ -13,9 +13,10 @@
     ]
   },
   "relay": {
-    "schema": "/Users/ortatherox/dev/redwood/relay-redwood-app-example/.redwood/schema.graphql",
     "language": "typescript",
-    "artifactDirectory": "src/components/__generated__"
+    "src": "./src",
+    "schema": "./src/schema.graphql",
+    "artifactDirectory": "./src/components/__generated__"
   },
   "dependencies": {
     "@redwoodjs/forms": "^1.0.0-rc.1",

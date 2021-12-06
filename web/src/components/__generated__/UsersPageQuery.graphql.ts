@@ -1,47 +1,33 @@
+/**
+ * @generated SignedSource<<c7c8f729df7e6f1aae2486d6f3b007c8>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UsersPageQueryVariables = {};
-export type UsersPageQueryResponse = {
-    readonly users: {
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly name: string | null;
-                readonly email: string;
-            };
-        } | null> | null;
-        readonly pageInfo: {
-            readonly endCursor: string;
-        };
-    } | null;
+import { ConcreteRequest, Query } from 'relay-runtime';
+export type UsersPageQuery$variables = {};
+export type UsersPageQuery$data = {
+  readonly users: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly id: string;
+        readonly name: string | null;
+        readonly email: string;
+      };
+    } | null> | null;
+    readonly pageInfo: {
+      readonly endCursor: string | null;
+    };
+  } | null;
 };
 export type UsersPageQuery = {
-    readonly response: UsersPageQueryResponse;
-    readonly variables: UsersPageQueryVariables;
+  variables: UsersPageQuery$variables;
+  response: UsersPageQuery$data;
 };
-
-
-
-/*
-query UsersPageQuery {
-  users(first: 5) {
-    edges {
-      node {
-        id
-        name
-        email
-      }
-    }
-    pageInfo {
-      endCursor
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -151,5 +137,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'eb6f41ac746b1927effe181654d1309f';
+
+(node as any).hash = "eb6f41ac746b1927effe181654d1309f";
+
 export default node;
