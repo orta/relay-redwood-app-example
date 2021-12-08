@@ -24,9 +24,5 @@
   },
   "prisma": {
     "seed": "yarn rw exec seed"
-  },
-  "resolutions": {
-    "typescript": "^4.5",
-    "graphql": "^15.0.0"
   }
 }

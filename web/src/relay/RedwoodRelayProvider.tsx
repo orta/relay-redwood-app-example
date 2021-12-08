@@ -1,10 +1,8 @@
 import type { AuthContextInterface } from '@redwoodjs/auth'
 import { useAuth as useRWAuth } from '@redwoodjs/auth'
-import { FetchConfigProvider, useFetchConfig, GraphQLHooksProvider } from '@redwoodjs/web'
+import { FetchConfigProvider, useFetchConfig } from '@redwoodjs/web'
 
-import { GraphQLHooks } from '@redwoodjs/web/dist/components/GraphQLHooksProvider'
-
-import { RelayEnvironmentProvider, useLazyLoadQuery, useMutation } from 'react-relay'
+import { RelayEnvironmentProvider } from 'react-relay'
 
 import { Environment, FetchFunction, Network, RecordSource, Store } from 'relay-runtime'
 

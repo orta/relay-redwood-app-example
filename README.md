@@ -15,61 +15,54 @@ This example repo is set up with:
 
 ## Setting up the client
 
-The majority of the Relay setup lives in your web package, with just the babel change living in the root workspace.
+The majority of the Relay setup lives in your web package. We'll be putting the relay config in the web `package.json` and making a babel config for the babel plugin.
 
-Add the client deps:
+Add the client & compiler deps:
 
-- `yarn workspace web add react-relay`
-- `yarn workspace web  --dev relay-config`
+- `yarn workspace web add react-relay relay-runtime`
+- `yarn workspace web  --dev relay-compiler babel-plugin-relay @types/react-relay @types/relay-compiler`
 
-Create `web/relay.config.js`:
+> These commands assume the RCs are now in prod.
 
-```js
-module.exports = {
-  src: './web',
-  schema: '.redwood/schema.graphql',
-  extensions: ['tsx'],
-  language: 'typescript',
-  artifactDirectory: './web/src/__generated__',
-  exclude: ['**/node_modules/**', '**/__mocks__/**', '**/__generated__/**'],
+Edit your `web/package.json`:
+
+```jsonc
+{
+  // browserlist...
+
+  "relay": {
+    "language": "typescript",
+    "src": "./src",
+    "schema": "./src/schema.graphql",
+    "artifactDirectory": "./src/components/__generated__"
+  },
+
+  // dependencies...
 }
 ```
 
-Hook up the babel plugin to the root workspace:
 
-```sh
-yarn add --dev babel-plugin-relay "graphql@^15.0.0" -W
-```
-
-Then edit the babel config `babel.config.js` so that the relay plugin is ins:
+Then edit the babel config `web/babel.config.js`, it also gets its settings from the `package.json` change above:
 
 ```diff
 /** @type {import('@babel/core').TransformOptions} */
 module.exports = {
-  presets: ['@redwoodjs/core/config/babel-preset'],
-+  plugins: ['relay'],
+  plugins: ['relay'],
 }
-```
-
-Set up the compiler:
-
-```sh
-yarn workspace web add --dev relay-compiler
-```
-
-Add the TS Relay plugin:
 
 ```
-yarn workspace web add --dev relay-compiler-language-typescript
-```
 
-And add the script to the root workspace: `/package.json`:
+For your ease-of-use, add the script to the root workspace: `/package.json`:
 
 ```sh
 {
+  "scripts": {
    "relay": "yarn workspace web run relay-compiler"
+  }
 }
 ```
+
+That's your setup done. Next is setting up the runtime.
 
 ## Replacing Apollo with Relay
 
@@ -378,3 +371,18 @@ Now that this repo is mostly complete and there is a full CRUD implementation of
 - [x] Do the whole CRUD dance
 - [x] Use fragments somewhere
 - [] Preload queries by facading a Link and `routes`?
+
+
+## This Repo
+
+To play around with it:
+
+```sh
+git clone https://github.com/orta/relay-redwood-app-example
+cd relay-redwood-app-example
+yarn
+
+yarn rw prisma migrate dev
+
+yarn dev
+```
