@@ -1,43 +1,31 @@
+/**
+ * @generated SignedSource<<ad1e29a38aa7ca97158cea5ec30e4516>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserPageQueryVariables = {
-    id: string;
+import { ConcreteRequest, Query } from 'relay-runtime';
+export type UserPageQuery$variables = {
+  id: string;
 };
-export type UserPageQueryResponse = {
-    readonly user: {
-        readonly id: string;
-        readonly name: string | null;
-        readonly email: string;
-        readonly profileViews: number;
-        readonly city: string;
-        readonly country: string;
-    } | null;
+export type UserPageQuery$data = {
+  readonly user: {
+    readonly id: string;
+    readonly name: string | null;
+    readonly email: string;
+    readonly profileViews: number;
+    readonly city: string;
+    readonly country: string;
+  } | null;
 };
 export type UserPageQuery = {
-    readonly response: UserPageQueryResponse;
-    readonly variables: UserPageQueryVariables;
+  variables: UserPageQuery$variables;
+  response: UserPageQuery$data;
 };
-
-
-
-/*
-query UserPageQuery(
-  $id: ID!
-) {
-  user(id: $id) {
-    id
-    name
-    email
-    profileViews
-    city
-    country
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -135,5 +123,7 @@ return {
   }
 };
 })();
-(node as any).hash = '4ede9883ecfae65deebd0856cd217e77';
+
+(node as any).hash = "4ede9883ecfae65deebd0856cd217e77";
+
 export default node;

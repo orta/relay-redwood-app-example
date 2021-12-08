@@ -12,20 +12,26 @@
       "not IE_Mob 11"
     ]
   },
+  "relay": {
+    "language": "typescript",
+    "src": "./src",
+    "schema": "./src/schema.graphql",
+    "artifactDirectory": "./src/components/__generated__"
+  },
   "dependencies": {
-    "@redwoodjs/forms": "0.38.3",
-    "@redwoodjs/router": "0.38.3",
-    "@redwoodjs/web": "0.38.3",
+    "@redwoodjs/forms": "^1.0.0-rc.1",
+    "@redwoodjs/router": "^1.0.0-rc.1",
+    "@redwoodjs/web": "^1.0.0-rc.1",
     "@types/react-relay": "^11.0.2",
-    "@types/relay-compiler": "^8.0.1",
+    "@types/relay-compiler": "^8.0.2",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-relay": "^12.0.0",
-    "relay-compiler": "^12.0.0",
-    "relay-compiler-language-typescript": "^15.0.0"
+    "react-relay": "^13.0.0-rc.1",
+    "relay-runtime": "^13.0.0-rc.1"
   },
   "devDependencies": {
-    "relay-config": "^12.0.0"
+    "babel-plugin-relay": "^13.0.0-rc.1",
+    "relay-compiler": "^13.0.0-rc.1"
   }
 }

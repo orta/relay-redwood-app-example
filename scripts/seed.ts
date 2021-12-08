@@ -1,6 +1,5 @@
 import type { Prisma } from '@prisma/client'
-
-import { db } from '$api/src/lib/db'
+import { db } from 'api/src/lib/db'
 
 export default async () => {
   try {
@@ -10,12 +9,15 @@ export default async () => {
     //
     // Update "const data = []" to match your data model and seeding needs
     //
-    const data: Prisma.UserExampleCreateInput[] = [
+    const data: Prisma.UserCreateArgs['data'][] = [
       // To try this example data with the UserExample model in schema.prisma,
       // uncomment the lines below and run 'yarn rw prisma migrate dev'
       //
-      // { name: 'alice', email: 'alice@example.com' },
-      // { name: 'mark', email: 'mark@example.com' },
+      { name: 'alice', email: 'alice@example.com', city: 'one', country: '1' },
+      { name: 'bob', email: 'bob@example.com', city: 'two', country: '2' },
+      { name: 'charlie', email: 'charlie@example.com', city: 'three', country: '3' },
+      { name: 'danielle', email: 'dani@example.com', city: 'four', country: '4' },
+      { name: 'eli', email: 'eli@example.com', city: 'five', country: '5' },
       // { name: 'jackie', email: 'jackie@example.com' },
       // { name: 'bob', email: 'bob@example.com' },
     ]
@@ -27,9 +29,9 @@ export default async () => {
       //
       // Change to match your data model and seeding needs
       //
-      data.map(async (userExample: Prisma.UserExampleCreateInput) => {
-        const record = await db.userExample.create({
-          data: { name: userExample.name, email: userExample.email },
+      data.map(async (userExample: Prisma.UserCreateArgs['data']) => {
+        const record = await db.user.create({
+          data: userExample,
         })
         console.log(record)
       })

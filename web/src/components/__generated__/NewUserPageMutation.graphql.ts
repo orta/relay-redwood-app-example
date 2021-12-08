@@ -1,40 +1,33 @@
+/**
+ * @generated SignedSource<<77edbefe5e2d0a736329c48db225ef1a>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type CreateUserInput = {
-    city: string;
-    country: string;
-    email: string;
-    name?: string | null | undefined;
-    profileViews: number;
+  city: string;
+  country: string;
+  email: string;
+  name?: string | null;
+  profileViews: number;
 };
-export type NewUserPageMutationVariables = {
-    input: CreateUserInput;
+export type NewUserPageMutation$variables = {
+  input: CreateUserInput;
 };
-export type NewUserPageMutationResponse = {
-    readonly createUser: {
-        readonly id: string;
-    };
+export type NewUserPageMutation$data = {
+  readonly createUser: {
+    readonly id: string;
+  };
 };
 export type NewUserPageMutation = {
-    readonly response: NewUserPageMutationResponse;
-    readonly variables: NewUserPageMutationVariables;
+  variables: NewUserPageMutation$variables;
+  response: NewUserPageMutation$data;
 };
-
-
-
-/*
-mutation NewUserPageMutation(
-  $input: CreateUserInput!
-) {
-  createUser(input: $input) {
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -97,5 +90,7 @@ return {
   }
 };
 })();
-(node as any).hash = '8eeb81de09aa3ca29c6e8d7cec029d0d';
+
+(node as any).hash = "8eeb81de09aa3ca29c6e8d7cec029d0d";
+
 export default node;

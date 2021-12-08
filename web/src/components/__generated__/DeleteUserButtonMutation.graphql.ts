@@ -1,33 +1,26 @@
+/**
+ * @generated SignedSource<<3276a22b31abd4dd09eb20afbe5606d8>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type DeleteUserButtonMutationVariables = {
-    id: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type DeleteUserButtonMutation$variables = {
+  id: string;
 };
-export type DeleteUserButtonMutationResponse = {
-    readonly deleteUser: {
-        readonly id: string;
-    };
+export type DeleteUserButtonMutation$data = {
+  readonly deleteUser: {
+    readonly id: string;
+  };
 };
 export type DeleteUserButtonMutation = {
-    readonly response: DeleteUserButtonMutationResponse;
-    readonly variables: DeleteUserButtonMutationVariables;
+  variables: DeleteUserButtonMutation$variables;
+  response: DeleteUserButtonMutation$data;
 };
-
-
-
-/*
-mutation DeleteUserButtonMutation(
-  $id: ID!
-) {
-  deleteUser(id: $id) {
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -90,5 +83,7 @@ return {
   }
 };
 })();
-(node as any).hash = '94a28df5093e1a5b9595a3afc5867698';
+
+(node as any).hash = "94a28df5093e1a5b9595a3afc5867698";
+
 export default node;

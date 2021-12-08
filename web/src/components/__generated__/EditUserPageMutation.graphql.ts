@@ -1,42 +1,34 @@
+/**
+ * @generated SignedSource<<9eccd65ceac1233a922964bc72eea1f5>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UpdateUserInput = {
-    city?: string | null | undefined;
-    country?: string | null | undefined;
-    email?: string | null | undefined;
-    name?: string | null | undefined;
-    profileViews?: number | null | undefined;
+  city?: string | null;
+  country?: string | null;
+  email?: string | null;
+  name?: string | null;
+  profileViews?: number | null;
 };
-export type EditUserPageMutationVariables = {
-    id: string;
-    input: UpdateUserInput;
+export type EditUserPageMutation$variables = {
+  id: string;
+  input: UpdateUserInput;
 };
-export type EditUserPageMutationResponse = {
-    readonly updateUser: {
-        readonly id: string;
-    };
+export type EditUserPageMutation$data = {
+  readonly updateUser: {
+    readonly id: string;
+  };
 };
 export type EditUserPageMutation = {
-    readonly response: EditUserPageMutationResponse;
-    readonly variables: EditUserPageMutationVariables;
+  variables: EditUserPageMutation$variables;
+  response: EditUserPageMutation$data;
 };
-
-
-
-/*
-mutation EditUserPageMutation(
-  $id: ID!
-  $input: UpdateUserInput!
-) {
-  updateUser(id: $id, input: $input) {
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -109,5 +101,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'bae1f5684b76f8501d68d80895b819b2';
+
+(node as any).hash = "bae1f5684b76f8501d68d80895b819b2";
+
 export default node;

@@ -8,70 +8,61 @@ There's further Redwood-centered discussion in [their Show & Tell section](https
 
 ## Redwood and Relay Versions
 
-This example works with:
+This example repo is set up with:
 
-- Relay 12, which is the last one using the JavaScript compiler, I will update this repo to the Relay Rust compiler when Relay 13 is out.
-- Redwood 0.38, which still has babel files, I need to see how to make [the babel plugin work in 0.39](https://community.redwoodjs.com/t/v0-39-release-candidate-is-available-feedback-wanted/2552#release-notes-breaking-changes-and-code-modifications-3)
-
-That said, [Relay 12](https://github.com/facebook/relay/issues/3622) does not work with GraphQL 16 - and Redwood 0/39/1.0-rc0 use graphql 16.
+- Relay 13rc1, which is the [new Rust compiler](https://relay.dev/blog/2021/12/08/introducing-the-new-relay-compiler/)
+- [RedwoodJS 1.0rc1](https://community.redwoodjs.com/t/redwood-v1-0-0-rc-is-now-available/2579/5)
 
 ## Setting up the client
 
-The majority of the Relay setup lives in your web package, with just the babel change living in the root workspace.
+The majority of the Relay setup lives in your web package. We'll be putting the relay config in the web `package.json` and making a babel config for the babel plugin.
 
-Add the client deps:
+Add the client & compiler deps:
 
-- `yarn workspace web add react-relay`
-- `yarn workspace web  --dev relay-config`
+- `yarn workspace web add react-relay relay-runtime`
+- `yarn workspace web  --dev relay-compiler babel-plugin-relay @types/react-relay @types/relay-compiler`
 
-Create `web/relay.config.js`:
+> These commands assume the RCs are now in prod.
+
+Edit your `web/package.json`:
+
+```jsonc
+{
+  // browserlist...
+
+  "relay": {
+    "language": "typescript",
+    "src": "./src",
+    "schema": "./src/schema.graphql",
+    "artifactDirectory": "./src/components/__generated__"
+  },
+
+  // dependencies...
+}
+```
+
+
+Then edit the babel config `web/babel.config.js`, it also gets its settings from the `package.json` change above:
 
 ```js
-module.exports = {
-  src: './web',
-  schema: '.redwood/schema.graphql',
-  extensions: ['tsx'],
-  language: 'typescript',
-  artifactDirectory: './web/src/__generated__',
-  exclude: ['**/node_modules/**', '**/__mocks__/**', '**/__generated__/**'],
-}
-```
-
-Hook up the babel plugin to the root workspace:
-
-```sh
-yarn add --dev babel-plugin-relay "graphql@^15.0.0" -W
-```
-
-Then edit the babel config `babel.config.js` so that the relay plugin is ins:
-
-```diff
 /** @type {import('@babel/core').TransformOptions} */
 module.exports = {
-  presets: ['@redwoodjs/core/config/babel-preset'],
-+  plugins: ['relay'],
+  plugins: ['relay'],
 }
-```
-
-Set up the compiler:
-
-```sh
-yarn workspace web add --dev relay-compiler
-```
-
-Add the TS Relay plugin:
 
 ```
-yarn workspace web add --dev relay-compiler-language-typescript
-```
 
-And add the script to the root workspace: `/package.json`:
+For your ease-of-use, add the script to the root workspace: `/package.json`:
 
 ```sh
 {
+  "scripts": {
    "relay": "yarn workspace web run relay-compiler"
+  }
 }
 ```
+
+That's your setup done. Next is setting up the runtime.
 
 ## Replacing Apollo with Relay
 
@@ -182,11 +173,11 @@ You've got a component, so you need to run
 yarn relay
 ```
 
-To generate files inside: `web/src/components/__generated__`
+To generate files inside: `web/./__generated__`
 
 ```
 > tree c
-web/src/components/__generated__
+web/./__generated__
 ├── MyPagePageQuery.graphql.ts
 ├── UserPageQuery.graphql.ts
 └── UsersPageQuery.graphql.ts
@@ -321,8 +312,8 @@ model User {
 Mutations require no special casing in comparison to the Relay Docs, here are some examples:
 
 - [Delete User Button](./web/src/components/User/DeleteUserButton.tsx) - inline mutation hook
-- [Create User](./web/src/pages/User/NewUserPage/NewUserPage.tsx) - imperitive mutation function which can be called in other places if needed
-- [Edit User](./web/src/pages/User/EditUserPage/EditUserPage.tsx) - imperitive mutation function + query (probably a bit too much going on in this component though)
+- [Create User](./web/src/pages/User/NewUserPage/NewUserPage.tsx) - imperative mutation function which can be called in other places if needed
+- [Edit User](./web/src/pages/User/EditUserPage/EditUserPage.tsx) - imperative mutation function + query (probably a bit too much going on in this component though)
 
 ## Fragments
 
@@ -380,3 +371,18 @@ Now that this repo is mostly complete and there is a full CRUD implementation of
 - [x] Do the whole CRUD dance
 - [x] Use fragments somewhere
 - [] Preload queries by facading a Link and `routes`?
+
+
+## This Repo
+
+To play around with it:
+
+```sh
+git clone https://github.com/orta/relay-redwood-app-example
+cd relay-redwood-app-example
+yarn
+
+yarn rw prisma migrate dev
+
+yarn dev
+```
