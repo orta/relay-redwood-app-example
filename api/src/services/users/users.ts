@@ -1,13 +1,16 @@
 import type { Prisma } from '@prisma/client'
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection'
 import { db } from 'src/lib/db'
-import { QueryUsersArgs } from '../../../types/graphql'
+import { QueryusersArgs } from '../../../types/graphql'
 
-export const users = (args: QueryUsersArgs) => {
-  if (!args.first && !args.last) throw new Error('Need first or last arg')
+export const users = (args: QueryusersArgs) => {
+  // if (!args.first && !args.last) throw new Error('Need first or last arg')
 
   return findManyCursorConnection(
-    (args) => db.user.findMany(args),
+    (args) => {
+      console.log({ args })
+      return db.user.findMany(args)
+    },
     () => db.user.count(),
     args
   )

@@ -8,11 +8,10 @@ There's further Redwood-centered discussion in [their Show & Tell section](https
 
 ## Redwood and Relay Versions
 
-This example works with:
+This example repo is set up with:
 
-- Relay 12, which is the last one using the JavaScript compiler, I will update this repo to the Relay Rust compiler when Relay 13 is out.
-- Redwood 0.38, which still has babel files, I need to see how to make [the babel plugin work in 0.39](https://community.redwoodjs.com/t/v0-39-release-candidate-is-available-feedback-wanted/2552#release-notes-breaking-changes-and-code-modifications-3)
-
+- Relay 13rc1, which is the [new Rust compiler](https://relay.dev/blog/2021/12/08/introducing-the-new-relay-compiler/)
+- [RedwoodJS 1.0rc1](https://community.redwoodjs.com/t/redwood-v1-0-0-rc-is-now-available/2579/5)
 
 ## Setting up the client
 
@@ -181,11 +180,11 @@ You've got a component, so you need to run
 yarn relay
 ```
 
-To generate files inside: `web/src/components/__generated__`
+To generate files inside: `web/./__generated__`
 
 ```
 > tree c
-web/src/components/__generated__
+web/./__generated__
 ├── MyPagePageQuery.graphql.ts
 ├── UserPageQuery.graphql.ts
 └── UsersPageQuery.graphql.ts

@@ -26,7 +26,6 @@
     "seed": "yarn rw exec seed"
   },
   "resolutions": {
-    "relay-compiler": "^13.0.0-rc.0",
     "typescript": "^4.5",
     "graphql": "^15.0.0"
   }
