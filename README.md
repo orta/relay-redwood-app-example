@@ -44,7 +44,7 @@ Edit your `web/package.json`:
 
 Then edit the babel config `web/babel.config.js`, it also gets its settings from the `package.json` change above:
 
-```diff
+```js
 /** @type {import('@babel/core').TransformOptions} */
 module.exports = {
   plugins: ['relay'],
@@ -312,8 +312,8 @@ model User {
 Mutations require no special casing in comparison to the Relay Docs, here are some examples:
 
 - [Delete User Button](./web/src/components/User/DeleteUserButton.tsx) - inline mutation hook
-- [Create User](./web/src/pages/User/NewUserPage/NewUserPage.tsx) - imperitive mutation function which can be called in other places if needed
-- [Edit User](./web/src/pages/User/EditUserPage/EditUserPage.tsx) - imperitive mutation function + query (probably a bit too much going on in this component though)
+- [Create User](./web/src/pages/User/NewUserPage/NewUserPage.tsx) - imperative mutation function which can be called in other places if needed
+- [Edit User](./web/src/pages/User/EditUserPage/EditUserPage.tsx) - imperative mutation function + query (probably a bit too much going on in this component though)
 
 ## Fragments
 
