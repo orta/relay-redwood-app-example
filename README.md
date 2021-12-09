@@ -167,25 +167,20 @@ export default () => (
 
 ## Run Relay
 
-You've got a component, so you need to run
+You've got a component, so you need to run:
 
 ```sh
 yarn relay
 ```
 
-To generate files inside: `web/./__generated__`
+To generate files, which would look like:
 
 ```
-> tree c
-web/./__generated__
+web/src/component/__generated__
 ├── MyPagePageQuery.graphql.ts
 ├── UserPageQuery.graphql.ts
 └── UsersPageQuery.graphql.ts
-
-0 directories, 3 files
 ```
-
-(I have some stubbed stuff in here)
 
 
 ### Run the Compiler in Watch Mode with your App
