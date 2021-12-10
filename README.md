@@ -54,29 +54,18 @@ module.exports = {
 
 ```
 
-For your ease-of-use, add the script to the root workspace: `/package.json`:
+Almost done, we have an issue with `graphql-codegen`, which relies on relay-compiler's JS API which doesn't exist anymore ([issue](https://github.com/ardatan/graphql-tools/issues/3999) and it will crash the ). Today this means that there are two copies of the relay-compiler in your app, which can be OK, but the older one takes over `yarn relay-compiler`.
 
-```sh
+So, edit `web/package.json` to have this script:
+
+```json
 {
   "scripts": {
-   "relay": "yarn workspace web run relay-compiler"
-  }
-}
-```
-
-That's all of the end-user code, but we want to make sure that there's only one instance of the relay compiler in the dep tree, and `graphql-codegen` includes the older build. So, edit the _root_ package.json to include this:
-
-```diff
-{
-   "prisma": {
-    "seed": "yarn rw exec seed"
+    "relay": "node node_modules/.bin/relay-compiler"
   },
-+  "resolutions": {
-+    "relay-compiler": "13.0.0-rc.1"
-+  }
 }
-
 ```
+
 
 
 ## Replacing Apollo with Relay
@@ -213,7 +202,7 @@ const { spawn } = require('child_process')
 /** @returns {import('webpack').Configuration} Webpack Configuration */
 module.exports = (config, { mode }) => {
   if (mode === 'development') {
-+    relayCompiler = spawn('yarn', ['relay-compiler', '--watch'], { shell: true })
++    relayCompiler = spawn('yarn', ['relay', '--watch'], { shell: true })
 +
 +    relayCompiler.stdout.on('data', (data) => {
 +      console.log(`Relay: ${data}`.trim())
