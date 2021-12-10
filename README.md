@@ -13,6 +13,8 @@ This example repo is set up with:
 - Relay 13rc1, which is the [new Rust compiler](https://relay.dev/blog/2021/12/08/introducing-the-new-relay-compiler/)
 - [RedwoodJS 1.0rc1](https://community.redwoodjs.com/t/redwood-v1-0-0-rc-is-now-available/2579/5)
 
+Notes: `yarn rw build` doesn't seem to work with suspense yet
+
 ## Setting up the client
 
 The majority of the Relay setup lives in your web package. We'll be putting the relay config in the web `package.json` and making a babel config for the babel plugin.
