@@ -8,7 +8,7 @@ process.on('exit', (code) => {
 /** @returns {import('webpack').Configuration} Webpack Configuration */
 module.exports = (config, { mode }) => {
   if (mode === 'development') {
-    relayCompiler = spawn('yarn', ['relay-compiler', '--watch'], { shell: true })
+    relayCompiler = spawn('yarn', ['relay', '--watch'], { shell: true })
 
     relayCompiler.stdout.on('data', (data) => {
       console.log(`Relay: ${data}`.trim())

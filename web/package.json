@@ -12,6 +12,9 @@
       "not IE_Mob 11"
     ]
   },
+  "scripts": {
+    "relay": "node node_modules/.bin/relay-compiler"
+  },
   "relay": {
     "language": "typescript",
     "src": "./src",
