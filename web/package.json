@@ -15,7 +15,7 @@
   "relay": {
     "language": "typescript",
     "src": "./src",
-    "schema": "./src/schema.graphql",
+    "schema": "../.redwood/schema.graphql",
     "artifactDirectory": "./src/components/__generated__"
   },
   "dependencies": {

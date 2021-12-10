@@ -62,7 +62,20 @@ For your ease-of-use, add the script to the root workspace: `/package.json`:
 }
 ```
 
-That's your setup done. Next is setting up the runtime.
+That's all of the end-user code, but we want to make sure that there's only one instance of the relay compiler in the dep tree, and `graphql-codegen` includes the older build. So, edit the _root_ package.json to include this:
+
+```diff
+{
+   "prisma": {
+    "seed": "yarn rw exec seed"
+  },
++  "resolutions": {
++    "relay-compiler": "13.0.0-rc.1"
++  }
+}
+
+```
+
 
 ## Replacing Apollo with Relay
 
