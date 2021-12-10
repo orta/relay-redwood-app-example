@@ -1,9 +1,10 @@
 import type { AuthContextInterface } from '@redwoodjs/auth'
+import { useIsBrowser } from '@redwoodjs/prerender/browserUtils'
 import { useAuth as useRWAuth } from '@redwoodjs/auth'
 import { FetchConfigProvider, useFetchConfig } from '@redwoodjs/web'
 
+import { Suspense } from 'react'
 import { RelayEnvironmentProvider } from 'react-relay'
-
 import { Environment, FetchFunction, Network, RecordSource, Store } from 'relay-runtime'
 
 export type UseAuthProp = () => AuthContextInterface
@@ -78,10 +79,13 @@ export const RedwoodRelayProvider: React.FunctionComponent<{
   environment?: Environment
   useAuth?: UseAuthProp
 }> = ({ environment, useAuth = useRWAuth, children }) => {
+  const browser = useIsBrowser()
+  const SsrCompatibleSuspense = browser ? Suspense : (props) => props.children
+
   return (
     <FetchConfigProvider useAuth={useAuth}>
       <RelayProviderWithFetchConfig environment={environment} useAuth={useAuth}>
-        {children}
+        <SsrCompatibleSuspense fallback={<div>Site loader</div>}>{children}</SsrCompatibleSuspense>
       </RelayProviderWithFetchConfig>
     </FetchConfigProvider>
   )
