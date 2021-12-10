@@ -33,7 +33,7 @@ Edit your `web/package.json`:
   "relay": {
     "language": "typescript",
     "src": "./src",
-    "schema": "./src/schema.graphql",
+    "schema": "../.redwood/schema.graphql",
     "artifactDirectory": "./src/components/__generated__"
   },
 
