@@ -373,12 +373,12 @@ We still use the GraphQL Extension, but it needs two changes to get all the info
   const { getPaths } = require('@redwoodjs/internal')
 
   module.exports = {
-    schema: getPaths().generated.schema,
-    documents: "web/src/**/*.tsx"
+    schema: [getPaths().generated.schema, './web/config/relay.graphql'],
+    documents: 'web/src/**/*.tsx',
   }
   ```
 
-2. Add the Relay directives SDL. You can copy it directly from [./api/src/graphql/relay.sdl.ts](./api/src/graphql/relay.sdl.ts).s
+2. Add the Relay directives SDL. You can copy it directly from [./web/config/relay.graphql](./web/config/relay.graphql). This is put in a place where only the IDE tooling picks it up, because Relay will add the directives when their needed (and you'd see duplicates errors)
 
 ## Long Term Maintenance
 
