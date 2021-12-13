@@ -78,11 +78,11 @@ export const schema = gql`
 
   # Handles
   # prettier-ignore
-  directive @__clientField(
-  filters: [String!]
-  handle: String!
-  key: String
-) repeatable on FIELD
+  #   directive @__clientField(
+  #   filters: [String!]
+  #   handle: String!
+  #   key: String
+  # ) repeatable on FIELD
 
   # MatchTransform
   """
