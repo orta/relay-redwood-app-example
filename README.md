@@ -358,16 +358,6 @@ This form is used in two places:
 
   Then later uses `<UserForm user={data.user} onSave={onSave} loading={loading} error={error} />`.
 
-## IDE Tooling
-
-The default GraphQL tooling doesn't know much (anything) about some of the extra directives in Relay, to set that up: run `yarn add vscode-apollo-relay -W`
-
-Then change `graphql.config.js`:
-
-```
-const { config } = require("vscode-apollo-relay").generateConfig()
-module.exports = config
-```
 
 ## Linting
 
