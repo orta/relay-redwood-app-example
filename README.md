@@ -227,7 +227,7 @@ module.exports = (config, { mode }) => {
 
 Relay makes two requests for your API:
 
-1. You have a global UUID system of [Object Identification](https://relay.dev/docs/guides/graphql-server-specification/#object-identification), and all models have `id: ID!`. You can read a more complete example of this pattern here](https://github.com/orta/redwood-object-identification#redwood-object-identification-pattern-example).
+1. You have a global UUID system of [Object Identification](https://relay.dev/docs/guides/graphql-server-specification/#object-identification), and all models have `id: ID!`. You can read a more [complete example of this pattern here](https://github.com/orta/redwood-object-identification#redwood-object-identification-pattern-example).
 
 In our app, we can add a new schema file: `api/src/graphql/identification.sdl.ts` with:
 
