@@ -11,7 +11,6 @@ export const handler = createGraphQLHandler({
   loggerConfig: { logger, options: {} },
   directives,
   sdls,
-  allowedOperations: ['query', 'mutation'],
   services,
   onException: () => {
     // Disconnect from your database with an unhandled exception.

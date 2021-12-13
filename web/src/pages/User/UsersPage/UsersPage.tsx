@@ -1,5 +1,4 @@
 import { Link, routes } from '@redwoodjs/router'
-import { Suspense } from 'react'
 import { graphql, useLazyLoadQuery } from 'react-relay'
 
 import type { UsersPageQuery } from 'src/components/__generated__/UsersPageQuery.graphql'
@@ -11,6 +10,8 @@ const UsersQuery = graphql`
         node {
           id
           name
+          # This is intentionally left in for
+          # the linter to show something
           email
         }
       }
@@ -33,22 +34,19 @@ function UsersPage() {
         </li>
       ))}
 
-      <div className="rw-text-center">
-        No users yet.
-        <Link to={routes.newUser()} className="rw-link">
-          Create one?
-        </Link>
-      </div>
+      {!users.length && <NoUsers />}
     </div>
   )
 }
 
-function Loading() {
-  return <div>Loading</div>
-}
-
-export default () => (
-  <Suspense fallback={<Loading />}>
-    <UsersPage />
-  </Suspense>
+const NoUsers = () => (
+  <div className="rw-text-center">
+    No users yet.
+    <br />
+    <Link to={routes.newUser()} className="rw-link">
+      Create one?
+    </Link>
+  </div>
 )
+
+export default UsersPage

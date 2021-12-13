@@ -310,9 +310,8 @@ model User {
 
 Mutations require no special casing in comparison to the Relay Docs, here are some examples:
 
-- [Delete User Button](./web/src/components/User/DeleteUserButton.tsx) - inline mutation hook
-- [Create User](./web/src/pages/User/NewUserPage/NewUserPage.tsx) - imperative mutation function which can be called in other places if needed
-- [Edit User](./web/src/pages/User/EditUserPage/EditUserPage.tsx) - imperative mutation function + query (probably a bit too much going on in this component though)
+- [Delete User Button](./web/src/components/User/DeleteUserButton.tsx)
+- [Edit User](./web/src/pages/User/EditUserPage/EditUserPage.tsx)
 
 ## Fragments
 
@@ -372,11 +371,11 @@ module.exports = config
 
 ## Linting
 
-I'm kinda waiting on https://github.com/relayjs/eslint-plugin-relay/pull/128 to look at adding the relay eslint plugin
+I've added https://github.com/relayjs/eslint-plugin-relay/pull/128 to this repo to be able to give feedback. Discussion on how to add that is in that PR.
 
 ## Long Term Maintenance
 
-Now that this repo is mostly complete and there is a full CRUD implementation of a User model in it. I have a sense of how much work would be necessary to do up-keep, and I think I'm willing to commit the time to converting my real app to use Relay and to live a little bit outside the Redwood Omakase.
+Now that this repo is mostly complete and there is a full CRUD implementation of a User model in it. I have a sense of how much work would be necessary to do up-keep, and I think I'm willing to commit the time to converting my real app to use Relay and to live a little bit outside the Redwood Omakase.w
 
 ## TODO
 

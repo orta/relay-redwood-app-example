@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<77edbefe5e2d0a736329c48db225ef1a>>
+ * @generated SignedSource<<a6eb8413ae57f77e9bd25c0ef20ce1e9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,17 +16,17 @@ export type CreateUserInput = {
   name?: string | null;
   profileViews: number;
 };
-export type NewUserPageMutation$variables = {
+export type EditUserPageNewMutation$variables = {
   input: CreateUserInput;
 };
-export type NewUserPageMutation$data = {
+export type EditUserPageNewMutation$data = {
   readonly createUser: {
     readonly id: string;
   };
 };
-export type NewUserPageMutation = {
-  variables: NewUserPageMutation$variables;
-  response: NewUserPageMutation$data;
+export type EditUserPageNewMutation = {
+  variables: EditUserPageNewMutation$variables;
+  response: EditUserPageNewMutation$data;
 };
 
 const node: ConcreteRequest = (function(){
@@ -68,7 +68,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "NewUserPageMutation",
+    "name": "EditUserPageNewMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -77,20 +77,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "NewUserPageMutation",
+    "name": "EditUserPageNewMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "60aac869427081a3b58a1dbd6d77e6a6",
+    "cacheID": "1e72bc524457b46332b0accafccc75a9",
     "id": null,
     "metadata": {},
-    "name": "NewUserPageMutation",
+    "name": "EditUserPageNewMutation",
     "operationKind": "mutation",
-    "text": "mutation NewUserPageMutation(\n  $input: CreateUserInput!\n) {\n  createUser(input: $input) {\n    id\n  }\n}\n"
+    "text": "mutation EditUserPageNewMutation(\n  $input: CreateUserInput!\n) {\n  createUser(input: $input) {\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "8eeb81de09aa3ca29c6e8d7cec029d0d";
+(node as any).hash = "407f065e176de19a7cecb54b34d65765";
 
 export default node;

@@ -3,30 +3,30 @@ import { Form, FormError, FieldError, Label, TextField, NumberField, Submit } fr
 import { graphql, useFragment } from 'react-relay'
 import { UserForm_user$key } from 'src/components/__generated__/UserForm_user.graphql'
 
+const UserEditQuery = graphql`
+  fragment UserForm_user on User {
+    id
+    name
+    email
+    profileViews
+    city
+    country
+  }
+`
+
 type Props = { user?: UserForm_user$key }
-type EditForm = { onSave: (data: any, id?: string) => void; loading: boolean; error?: Error }
+type EditForm = { onSave: (data: unknown, id?: string) => void; loading: boolean; error?: Error }
 
 const UserForm = (props: Props & EditForm) => {
-  const onSubmit = (data) => props.onSave(data, props?.user?.id)
+  const data = useFragment(UserEditQuery, props.user)
 
-  const data = useFragment(
-    graphql`
-      fragment UserForm_user on User {
-        id
-        name
-        email
-        profileViews
-        city
-        country
-      }
-    `,
-    props.user
-  )
+  const onSubmit = (data) => props.onSave(data, data?.id)
 
   return (
     <div className="rw-form-wrapper">
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           error={props.error as any}
           wrapperClassName="rw-form-error-wrapper"
           titleClassName="rw-form-error-title"
