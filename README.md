@@ -363,6 +363,23 @@ This form is used in two places:
 
 I've added https://github.com/relayjs/eslint-plugin-relay/pull/128 to this repo to be able to give feedback. Discussion on how to add that is in that PR.
 
+## IDE Tooling
+
+We still use the GraphQL Extension, but it needs two changes to get all the info.
+
+1. Let GraphQL VSCode know the tsx files are worth reading, by editing `graphql.config.js`:
+
+  ```ts
+  const { getPaths } = require('@redwoodjs/internal')
+
+  module.exports = {
+    schema: getPaths().generated.schema,
+    documents: "web/src/**/*.tsx"
+  }
+  ```
+
+2. Add the Relay directives SDL. You can copy it directly from [./api/src/graphql/relay.sdl.ts](./api/src/graphql/relay.sdl.ts).s
+
 ## Long Term Maintenance
 
 Now that this repo is mostly complete and there is a full CRUD implementation of a User model in it. I have a sense of how much work would be necessary to do up-keep, and I think I'm willing to commit the time to converting my real app to use Relay and to live a little bit outside the Redwood Omakase.w
