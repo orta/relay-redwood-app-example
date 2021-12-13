@@ -227,7 +227,7 @@ module.exports = (config, { mode }) => {
 
 Relay makes two requests for your API:
 
-1. You have a global UUID system of [Object Identification](https://relay.dev/docs/guides/graphql-server-specification/#object-identification), and all models have `id: ID!`
+1. You have a global UUID system of [Object Identification](https://relay.dev/docs/guides/graphql-server-specification/#object-identification), and all models have `id: ID!`. You can read a more complete example of this pattern here](https://github.com/orta/redwood-object-identification#redwood-object-identification-pattern-example).
 
 In our app, we can add a new schema file: `api/src/graphql/identification.sdl.ts` with:
 
@@ -359,6 +359,20 @@ This form is used in two places:
 
   Then later uses `<UserForm user={data.user} onSave={onSave} loading={loading} error={error} />`.
 
+## IDE Tooling
+
+The default GraphQL tooling doesn't know much (anything) about some of the extra directives in Relay, to set that up: run `yarn add vscode-apollo-relay -W`
+
+Then change `graphql.config.js`:
+
+```
+const { config } = require("vscode-apollo-relay").generateConfig()
+module.exports = config
+```
+
+## Linting
+
+I'm kinda waiting on https://github.com/relayjs/eslint-plugin-relay/pull/128 to look at adding the relay eslint plugin
 
 ## Long Term Maintenance
 

@@ -1,5 +1,2 @@
-const { getPaths } = require('@redwoodjs/internal')
-
-module.exports = {
-  schema: getPaths().generated.schema,
-}
+const { config } = require("vscode-apollo-relay").generateConfig()
+module.exports = config

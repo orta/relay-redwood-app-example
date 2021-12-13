@@ -3,7 +3,10 @@ import { Form, FormError, FieldError, Label, TextField, NumberField, Submit } fr
 import { graphql, useFragment } from 'react-relay'
 import { UserForm_user$key } from 'src/components/__generated__/UserForm_user.graphql'
 
-const UserForm = (props: { user?: UserForm_user$key; onSave: any; loading: boolean; error?: Error }) => {
+type Props = { user?: UserForm_user$key }
+type EditForm = { onSave: (data: any, id?: string) => void; loading: boolean; error?: Error }
+
+const UserForm = (props: Props & EditForm) => {
   const onSubmit = (data) => props.onSave(data, props?.user?.id)
 
   const data = useFragment(
