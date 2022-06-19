@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { graphql, useLazyLoadQuery, useMutation } from 'react-relay'
-import { AvailableRoutes } from '@redwoodjs/router'
+import { AvailableRoutes, navigate, routes } from '@redwoodjs/router'
 import UserForm from 'src/components/User/UserForm'
 
 import type { EditUserPageQuery } from 'src/components/__generated__/EditUserPageQuery.graphql'
@@ -43,7 +43,9 @@ const EditUserPage = ({ id }: PageParams) => {
   const onSave = (input) =>
     mutation({
       variables: { id, input },
-      onCompleted: () => document.location.reload(),
+      onCompleted: () => {
+        navigate(routes.users())
+      },
       onError: setError,
     })
 

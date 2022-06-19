@@ -13,7 +13,7 @@ export function DeleteUserButton(props: { id: string }) {
   `)
 
   const onclick = () => {
-    const connectionId = ConnectionHandler.getConnectionID(props.id, 'UsersPage_users')
+    const connectionId = ConnectionHandler.getConnectionID('root', 'UsersPage_users')
     if (confirm('Are you sure you want to delete user ' + props.id + '?')) {
       commit({
         variables: {
