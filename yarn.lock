@@ -8111,9 +8111,9 @@ eslint-plugin-react@7.27.1:
     semver "^6.3.0"
     string.prototype.matchall "^4.0.6"
 
-"eslint-plugin-relay@git://github.com/opencreek/eslint-plugin-relay#0c91b686ee23b3c1765ab02a537f03145fe08eb9":
+"eslint-plugin-relay@git+https://github.com/opencreek/eslint-plugin-relay.git#generated-typescript-types":
   version "1.8.3"
-  resolved "git://github.com/opencreek/eslint-plugin-relay#0c91b686ee23b3c1765ab02a537f03145fe08eb9"
+  resolved "git+https://github.com/opencreek/eslint-plugin-relay.git#f29444db1e6fe6d62898da0517571a6aaff2e584"
   dependencies:
     graphql "^14.0.0 || ^15.0.0"
 
