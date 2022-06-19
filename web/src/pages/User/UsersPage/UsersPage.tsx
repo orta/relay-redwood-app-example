@@ -5,7 +5,7 @@ import type { UsersPageQuery } from 'src/components/__generated__/UsersPageQuery
 
 const UsersQuery = graphql`
   query UsersPageQuery {
-    users(first: 5) {
+    users(first: 5) @connection(key: "UsersPage_users") {
       edges {
         node {
           id

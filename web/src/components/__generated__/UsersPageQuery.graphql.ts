@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c7c8f729df7e6f1aae2486d6f3b007c8>>
+ * @generated SignedSource<<04c8d187275dbb079d0d1d6d719a11de>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -33,56 +33,46 @@ const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "alias": null,
-    "args": [
-      {
-        "kind": "Literal",
-        "name": "first",
-        "value": 5
-      }
-    ],
-    "concreteType": "UserConnection",
+    "args": null,
+    "concreteType": "UserEdge",
     "kind": "LinkedField",
-    "name": "users",
-    "plural": false,
+    "name": "edges",
+    "plural": true,
     "selections": [
       {
         "alias": null,
         "args": null,
-        "concreteType": "UserEdge",
+        "concreteType": "User",
         "kind": "LinkedField",
-        "name": "edges",
-        "plural": true,
+        "name": "node",
+        "plural": false,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "concreteType": "User",
-            "kind": "LinkedField",
-            "name": "node",
-            "plural": false,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "name",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "email",
-                "storageKey": null
-              }
-            ],
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "name",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "email",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "__typename",
             "storageKey": null
           }
         ],
@@ -91,23 +81,44 @@ var v0 = [
       {
         "alias": null,
         "args": null,
-        "concreteType": "PageInfo",
-        "kind": "LinkedField",
-        "name": "pageInfo",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "endCursor",
-            "storageKey": null
-          }
-        ],
+        "kind": "ScalarField",
+        "name": "cursor",
         "storageKey": null
       }
     ],
-    "storageKey": "users(first:5)"
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "PageInfo",
+    "kind": "LinkedField",
+    "name": "pageInfo",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "endCursor",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "hasNextPage",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+],
+v1 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 5
   }
 ];
 return {
@@ -116,7 +127,18 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "UsersPageQuery",
-    "selections": (v0/*: any*/),
+    "selections": [
+      {
+        "alias": "users",
+        "args": null,
+        "concreteType": "UserConnection",
+        "kind": "LinkedField",
+        "name": "__UsersPage_users_connection",
+        "plural": false,
+        "selections": (v0/*: any*/),
+        "storageKey": null
+      }
+    ],
     "type": "Query",
     "abstractKey": null
   },
@@ -125,19 +147,50 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "UsersPageQuery",
-    "selections": (v0/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "UserConnection",
+        "kind": "LinkedField",
+        "name": "users",
+        "plural": false,
+        "selections": (v0/*: any*/),
+        "storageKey": "users(first:5)"
+      },
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "filters": null,
+        "handle": "connection",
+        "key": "UsersPage_users",
+        "kind": "LinkedHandle",
+        "name": "users"
+      }
+    ]
   },
   "params": {
-    "cacheID": "5ffdcc2e3a908ecb7069b92eb4922323",
+    "cacheID": "d7a17eaa70db78a1b21bf528d333130b",
     "id": null,
-    "metadata": {},
+    "metadata": {
+      "connection": [
+        {
+          "count": null,
+          "cursor": null,
+          "direction": "forward",
+          "path": [
+            "users"
+          ]
+        }
+      ]
+    },
     "name": "UsersPageQuery",
     "operationKind": "query",
-    "text": "query UsersPageQuery {\n  users(first: 5) {\n    edges {\n      node {\n        id\n        name\n        email\n      }\n    }\n    pageInfo {\n      endCursor\n    }\n  }\n}\n"
+    "text": "query UsersPageQuery {\n  users(first: 5) {\n    edges {\n      node {\n        id\n        name\n        email\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "eb6f41ac746b1927effe181654d1309f";
+(node as any).hash = "461493f213d71ea2caa77a8dab1173d4";
 
 export default node;
