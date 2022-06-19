@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a6eb8413ae57f77e9bd25c0ef20ce1e9>>
+ * @generated SignedSource<<e531f4e14a404f2769e67d0848d7aa62>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,8 +25,8 @@ export type EditUserPageNewMutation$data = {
   };
 };
 export type EditUserPageNewMutation = {
-  variables: EditUserPageNewMutation$variables;
   response: EditUserPageNewMutation$data;
+  variables: EditUserPageNewMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){

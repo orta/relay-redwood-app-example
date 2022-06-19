@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<81cd43611d20564a43c0efd6131aa0cb>>
+ * @generated SignedSource<<e4b88a7904806cfd45ae82a6f723be65>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,8 +10,8 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type DeleteUserButtonMutation$variables = {
-  id: string;
   connections: ReadonlyArray<string>;
+  id: string;
 };
 export type DeleteUserButtonMutation$data = {
   readonly deleteUser: {
@@ -19,8 +19,8 @@ export type DeleteUserButtonMutation$data = {
   };
 };
 export type DeleteUserButtonMutation = {
-  variables: DeleteUserButtonMutation$variables;
   response: DeleteUserButtonMutation$data;
+  variables: DeleteUserButtonMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
