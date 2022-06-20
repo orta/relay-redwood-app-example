@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f06a6ad13ade1fcf4ecbc91287639907>>
+ * @generated SignedSource<<79347432d51b0986e2232fcbce2fd08a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,32 +10,52 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type UsersPageQuery$variables = {};
-export type UsersPageQuery$data = {
+export type UsersListQuery$variables = {
+  after?: string | null;
+  first?: number | null;
+};
+export type UsersListQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"UsersList_query">;
 };
-export type UsersPageQuery = {
-  response: UsersPageQuery$data;
-  variables: UsersPageQuery$variables;
+export type UsersListQuery = {
+  response: UsersListQuery$data;
+  variables: UsersListQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
-    "kind": "Literal",
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "after"
+  },
+  {
+    "defaultValue": 10,
+    "kind": "LocalArgument",
+    "name": "first"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "after"
+  },
+  {
+    "kind": "Variable",
     "name": "first",
-    "value": 10
+    "variableName": "first"
   }
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "UsersPageQuery",
+    "name": "UsersListQuery",
     "selections": [
       {
-        "args": null,
+        "args": (v1/*: any*/),
         "kind": "FragmentSpread",
         "name": "UsersList_query"
       }
@@ -45,13 +65,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "UsersPageQuery",
+    "name": "UsersListQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v0/*: any*/),
+        "args": (v1/*: any*/),
         "concreteType": "UserConnection",
         "kind": "LinkedField",
         "name": "users",
@@ -133,11 +153,11 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": "users(first:10)"
+        "storageKey": null
       },
       {
         "alias": null,
-        "args": (v0/*: any*/),
+        "args": (v1/*: any*/),
         "filters": null,
         "handle": "connection",
         "key": "UsersPage_users",
@@ -147,16 +167,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bdbe35621758fdae0eeaacbcbc0c42c5",
+    "cacheID": "5f74f2e854b9ddf5e2728eac12ee83fb",
     "id": null,
     "metadata": {},
-    "name": "UsersPageQuery",
+    "name": "UsersListQuery",
     "operationKind": "query",
-    "text": "query UsersPageQuery {\n  ...UsersList_query\n}\n\nfragment UsersList_query on Query {\n  users(first: 10) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query UsersListQuery(\n  $after: String\n  $first: Int = 10\n) {\n  ...UsersList_query_2HEEH6\n}\n\nfragment UsersList_query_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d7f5a7623b54f99d8c3b95038fd8db85";
+(node as any).hash = "380be258f69973dd48eae1f5186944f8";
 
 export default node;

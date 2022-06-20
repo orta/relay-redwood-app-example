@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9eccd65ceac1233a922964bc72eea1f5>>
+ * @generated SignedSource<<d60b342f74c8fc83a4161d6eaf93c374>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type UpdateUserInput = {
   city?: string | null;
   country?: string | null;
@@ -22,12 +23,12 @@ export type EditUserPageMutation$variables = {
 };
 export type EditUserPageMutation$data = {
   readonly updateUser: {
-    readonly id: string;
+    readonly " $fragmentSpreads": FragmentRefs<"UserForm_user">;
   };
 };
 export type EditUserPageMutation = {
-  variables: EditUserPageMutation$variables;
   response: EditUserPageMutation$data;
+  variables: EditUserPageMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -45,33 +46,14 @@ var v0 = [
 ],
 v1 = [
   {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "id",
-        "variableName": "id"
-      },
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input"
-      }
-    ],
-    "concreteType": "User",
-    "kind": "LinkedField",
-    "name": "updateUser",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "id",
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "id"
+  },
+  {
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
   }
 ];
 return {
@@ -80,7 +62,24 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "EditUserPageMutation",
-    "selections": (v1/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "updateUser",
+        "plural": false,
+        "selections": [
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "UserForm_user"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
     "type": "Mutation",
     "abstractKey": null
   },
@@ -89,19 +88,73 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "EditUserPageMutation",
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "updateUser",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "name",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "email",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "profileViews",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "city",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "country",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "89f4f5bfca6faa449218552467389fc1",
+    "cacheID": "1c3f62046220ee12b2a31bfa7053a658",
     "id": null,
     "metadata": {},
     "name": "EditUserPageMutation",
     "operationKind": "mutation",
-    "text": "mutation EditUserPageMutation(\n  $id: ID!\n  $input: UpdateUserInput!\n) {\n  updateUser(id: $id, input: $input) {\n    id\n  }\n}\n"
+    "text": "mutation EditUserPageMutation(\n  $id: ID!\n  $input: UpdateUserInput!\n) {\n  updateUser(id: $id, input: $input) {\n    ...UserForm_user\n    id\n  }\n}\n\nfragment UserForm_user on User {\n  id\n  name\n  email\n  profileViews\n  city\n  country\n}\n"
   }
 };
 })();
 
-(node as any).hash = "bae1f5684b76f8501d68d80895b819b2";
+(node as any).hash = "1e0c962f2c98f0e683a0eb67436432a1";
 
 export default node;

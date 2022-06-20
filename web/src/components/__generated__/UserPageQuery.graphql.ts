@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ad1e29a38aa7ca97158cea5ec30e4516>>
+ * @generated SignedSource<<fc8568aeca68aaea9e267feb8f5e87de>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,17 +14,17 @@ export type UserPageQuery$variables = {
 };
 export type UserPageQuery$data = {
   readonly user: {
-    readonly id: string;
-    readonly name: string | null;
-    readonly email: string;
-    readonly profileViews: number;
     readonly city: string;
     readonly country: string;
+    readonly email: string;
+    readonly id: string;
+    readonly name: string | null;
+    readonly profileViews: number;
   } | null;
 };
 export type UserPageQuery = {
-  variables: UserPageQuery$variables;
   response: UserPageQuery$data;
+  variables: UserPageQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){

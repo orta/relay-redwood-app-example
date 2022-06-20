@@ -3858,9 +3858,9 @@
     csstype "^3.0.2"
 
 "@types/relay-compiler@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@types/relay-compiler/-/relay-compiler-8.0.2.tgz#d26af2fca384584c965379288eaa5980c1549596"
-  integrity sha512-Sj6p61kEHhDmogNnSlYHMXlvWOBSXcScB7rRmTirDGiSZcNJwRZdznOyhDT+4LIT51RptazzZFgDskurTQM6hQ==
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@types/relay-compiler/-/relay-compiler-8.0.3.tgz#9534082fb06406c853293909f9afa8f7b4b81950"
+  integrity sha512-XsMPIn+D/XnhLEp2sizAipg1LZmT7G4APs7Lzy2rjxa1xsO6OG3xyyy3wzphu2HF2+xnXNS6o8C5K1aa1+ftYw==
   dependencies:
     "@types/relay-runtime" "*"
     graphql "^14.5.3"
@@ -6690,6 +6690,13 @@ cross-fetch@^3.0.4, cross-fetch@^3.0.6:
   dependencies:
     node-fetch "2.6.1"
 
+cross-fetch@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
+  integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
+  dependencies:
+    node-fetch "2.6.7"
+
 cross-spawn@7.0.3, cross-spawn@^7.0.0, cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -8111,9 +8118,9 @@ eslint-plugin-react@7.27.1:
     semver "^6.3.0"
     string.prototype.matchall "^4.0.6"
 
-"eslint-plugin-relay@git://github.com/opencreek/eslint-plugin-relay#0c91b686ee23b3c1765ab02a537f03145fe08eb9":
+"eslint-plugin-relay@git+https://github.com/opencreek/eslint-plugin-relay.git#generated-typescript-types":
   version "1.8.3"
-  resolved "git://github.com/opencreek/eslint-plugin-relay#0c91b686ee23b3c1765ab02a537f03145fe08eb9"
+  resolved "git+https://github.com/opencreek/eslint-plugin-relay.git#f29444db1e6fe6d62898da0517571a6aaff2e584"
   dependencies:
     graphql "^14.0.0 || ^15.0.0"
 
@@ -8649,6 +8656,19 @@ fbjs@^3.0.0:
   integrity sha512-8+vkGyT4lNDRKHQNPp0yh/6E7FfkLg89XqQbOYnvntRh+8RiSD43yrh9E5ejp1muCizTL4nDVG+y8W4e+LROHg==
   dependencies:
     cross-fetch "^3.0.4"
+    fbjs-css-vars "^1.0.0"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.30"
+
+fbjs@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-3.0.4.tgz#e1871c6bd3083bac71ff2da868ad5067d37716c6"
+  integrity sha512-ucV0tDODnGV3JCnnkmoszb5lf4bNpzjv80K41wd4k798Etq+UYD0y0TIfalLjZoKgjive6/adkRnszwapiDgBQ==
+  dependencies:
+    cross-fetch "^3.1.5"
     fbjs-css-vars "^1.0.0"
     loose-envify "^1.0.0"
     object-assign "^4.1.0"
@@ -12534,6 +12554,13 @@ node-fetch@2.6.6, node-fetch@^2.6.0, node-fetch@^2.6.1, node-fetch@^2.6.5:
   dependencies:
     whatwg-url "^5.0.0"
 
+node-fetch@2.6.7:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
+  integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  dependencies:
+    whatwg-url "^5.0.0"
+
 node-forge@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.10.0.tgz#32dea2afb3e9926f02ee5ce8794902691a676bf3"
@@ -14291,16 +14318,16 @@ react-refresh@^0.8.3:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react-relay@^13.0.0-rc.1:
-  version "13.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-13.0.0-rc.1.tgz#4794f4a8fe54a55347bdb271d609892f3c9fa28a"
-  integrity sha512-xfInc9UzhvHQ530+pOXYzG+OUcaFBWaLgM33gOBjndzMDmFx4EIbxn/QGiHRyHhyKm7Og2uAq4FVpKOUx51haQ==
+react-relay@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-14.0.0.tgz#c9f9b8912bcef589782bea6a382548d55d20d522"
+  integrity sha512-zqT8ZS1lq24p1R8nW5Vi03oB1Ix8aYJxyuSl4bB8XDjSNL0kFuAdN8R5LrundUd3vuKjkV1UBfb1xuuoRroUhA==
   dependencies:
     "@babel/runtime" "^7.0.0"
-    fbjs "^3.0.0"
+    fbjs "^3.0.2"
     invariant "^2.2.4"
     nullthrows "^1.1.1"
-    relay-runtime "13.0.0-rc.1"
+    relay-runtime "14.0.0"
 
 react-sizeme@^3.0.1:
   version "3.0.2"
@@ -14544,10 +14571,10 @@ relay-compiler@12.0.0:
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
-relay-compiler@^13.0.0-rc.1:
-  version "13.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.0.0-rc.1.tgz#9da34960905640c54b792f664970ce7010644d9b"
-  integrity sha512-Ljo3j/ymotRt9+5yRIVSJPqfhIsvku6ACoa7Dcza57grNpYhOeb4StcDCvAbCDGpHGCu7mkWflpOYqN6Ds+jig==
+relay-compiler@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-14.0.0.tgz#03ab000c246c7c46a26b77584b345621155a770e"
+  integrity sha512-1h4lwvHg5efhivqpMfG6SS4cGoCJH3BsRelihwD+GNiylBnLKArSE6zyW7LfEwSpuDfJ+l6rrRfSL8IVZwOZ0g==
 
 relay-runtime@12.0.0:
   version "12.0.0"
@@ -14558,7 +14585,16 @@ relay-runtime@12.0.0:
     fbjs "^3.0.0"
     invariant "^2.2.4"
 
-relay-runtime@13.0.0-rc.1, relay-runtime@^13.0.0-rc.1:
+relay-runtime@14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-14.0.0.tgz#e2fa40d73569d2ba5810c773fb85ac872b08b5d0"
+  integrity sha512-Rnf6EgCl3QY85il/gTEh6GHAR9hoRkjYWgMR2Y3Afugb8qLR0vL6m/GBYqol8W3L8B+XqZ2U04/g624DRpEqAw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    fbjs "^3.0.2"
+    invariant "^2.2.4"
+
+relay-runtime@^13.0.0-rc.1:
   version "13.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-13.0.0-rc.1.tgz#2400208f772984f70acf5a66a0e2075f0bf0088b"
   integrity sha512-I2GOeFoNw7Ke5ONfOzvLlqylwH6Pf6iygP2SbimPWvfA8R8NFXdqQSb2RtNYD1IYIYPxTgunA19Q7kuToKJfIw==

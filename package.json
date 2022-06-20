@@ -32,7 +32,7 @@
     "seed": "yarn rw exec seed"
   },
   "dependencies": {
-    "eslint-plugin-relay": "git://github.com/opencreek/eslint-plugin-relay#0c91b686ee23b3c1765ab02a537f03145fe08eb9",
+    "eslint-plugin-relay": "git+https://github.com/opencreek/eslint-plugin-relay.git#generated-typescript-types",
     "vscode-apollo-relay": "^1.5.2"
   }
 }

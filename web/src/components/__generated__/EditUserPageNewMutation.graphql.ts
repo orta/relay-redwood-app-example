@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a6eb8413ae57f77e9bd25c0ef20ce1e9>>
+ * @generated SignedSource<<cbfce9dc5ca02993498646b79f146d82>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,80 +17,156 @@ export type CreateUserInput = {
   profileViews: number;
 };
 export type EditUserPageNewMutation$variables = {
+  connections: ReadonlyArray<string>;
   input: CreateUserInput;
 };
 export type EditUserPageNewMutation$data = {
   readonly createUser: {
-    readonly id: string;
+    readonly user: {
+      readonly id: string;
+      readonly name: string | null;
+    } | null;
+    readonly userId: string | null;
   };
 };
 export type EditUserPageNewMutation = {
-  variables: EditUserPageNewMutation$variables;
   response: EditUserPageNewMutation$data;
+  variables: EditUserPageNewMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "connections"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "input"
+},
+v2 = [
   {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "input"
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
   }
 ],
-v1 = [
-  {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input"
-      }
-    ],
-    "concreteType": "User",
-    "kind": "LinkedField",
-    "name": "createUser",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "id",
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
-  }
-];
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "userId",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "User",
+  "kind": "LinkedField",
+  "name": "user",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "name",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+};
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "EditUserPageNewMutation",
-    "selections": (v1/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": (v2/*: any*/),
+        "concreteType": "CreateUserPayload",
+        "kind": "LinkedField",
+        "name": "createUser",
+        "plural": false,
+        "selections": [
+          (v3/*: any*/),
+          (v4/*: any*/)
+        ],
+        "storageKey": null
+      }
+    ],
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
     "name": "EditUserPageNewMutation",
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v2/*: any*/),
+        "concreteType": "CreateUserPayload",
+        "kind": "LinkedField",
+        "name": "createUser",
+        "plural": false,
+        "selections": [
+          (v3/*: any*/),
+          (v4/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "filters": null,
+            "handle": "prependNode",
+            "key": "",
+            "kind": "LinkedHandle",
+            "name": "user",
+            "handleArgs": [
+              {
+                "kind": "Variable",
+                "name": "connections",
+                "variableName": "connections"
+              },
+              {
+                "kind": "Literal",
+                "name": "edgeTypeName",
+                "value": "UserEdge"
+              }
+            ]
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "1e72bc524457b46332b0accafccc75a9",
+    "cacheID": "55557f3fae0b08d6521259c5ddef8d88",
     "id": null,
     "metadata": {},
     "name": "EditUserPageNewMutation",
     "operationKind": "mutation",
-    "text": "mutation EditUserPageNewMutation(\n  $input: CreateUserInput!\n) {\n  createUser(input: $input) {\n    id\n  }\n}\n"
+    "text": "mutation EditUserPageNewMutation(\n  $input: CreateUserInput!\n) {\n  createUser(input: $input) {\n    userId\n    user {\n      id\n      name\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "407f065e176de19a7cecb54b34d65765";
+(node as any).hash = "c12415ce387a848adc33a529794fd501";
 
 export default node;

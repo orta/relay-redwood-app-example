@@ -7,5 +7,6 @@
   },
   "[prisma]": {
     "editor.formatOnSave": true
-  }
+  },
+  "relay.rootDirectory": "./web"
 }
