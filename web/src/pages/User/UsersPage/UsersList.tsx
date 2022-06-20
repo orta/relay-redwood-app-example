@@ -7,7 +7,7 @@ const UsersList = (props: { query: UsersList_query$key }) => {
   const { data } = usePaginationFragment<UsersListQuery, UsersList_query$key>(
     graphql`
       fragment UsersList_query on Query
-      @argumentDefinitions(first: { type: "Int", defaultValue: 10 }, after: { type: "String" })
+      @argumentDefinitions(first: { type: "Int", defaultValue: 50 }, after: { type: "String" })
       @refetchable(queryName: "UsersListQuery") {
         users(first: $first, after: $after) @connection(key: "UsersPage_users") {
           edges {

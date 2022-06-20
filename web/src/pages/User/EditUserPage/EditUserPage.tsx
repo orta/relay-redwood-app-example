@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { graphql, useLazyLoadQuery, useMutation } from 'react-relay'
-import { AvailableRoutes, navigate, routes } from '@redwoodjs/router'
+import { ConnectionHandler, graphql, useLazyLoadQuery, useMutation } from 'react-relay'
+import { AvailableRoutes } from '@redwoodjs/router'
 import UserForm from 'src/components/User/UserForm'
 
 import type { EditUserPageQuery } from 'src/components/__generated__/EditUserPageQuery.graphql'
 import { EditUserPageMutation } from 'src/components/__generated__/EditUserPageMutation.graphql'
+import { EditUserPageNewMutation } from 'src/components/__generated__/EditUserPageNewMutation.graphql'
 
 const EditUserPageReq = graphql`
   query EditUserPageQuery($id: ID!) {
@@ -17,15 +18,19 @@ const EditUserPageReq = graphql`
 const EditMutation = graphql`
   mutation EditUserPageMutation($id: ID!, $input: UpdateUserInput!) {
     updateUser(id: $id, input: $input) {
-      id
+      ...UserForm_user
     }
   }
 `
 
 const CreateMutation = graphql`
-  mutation EditUserPageNewMutation($input: CreateUserInput!) {
+  mutation EditUserPageNewMutation($input: CreateUserInput!, $connections: [ID!]!) {
     createUser(input: $input) {
-      id
+      userId
+      user @prependNode(connections: $connections, edgeTypeName: "UserEdge") {
+        id
+        name
+      }
     }
   }
 `
@@ -35,19 +40,22 @@ const EditUserPage = ({ id }: PageParams) => {
   const [error, setError] = useState<Error>(undefined)
   const [commitEdit, editLoading] = useMutation<EditUserPageMutation>(EditMutation)
   // Intentionally left out for eslint to raise on something
-  const [commitCreate, createLoading] = useMutation(CreateMutation)
+  const [commitCreate, createLoading] = useMutation<EditUserPageNewMutation>(CreateMutation)
 
   const isNew = id === 'new'
   const mutation = isNew ? commitCreate : commitEdit
 
-  const onSave = (input) =>
+  const onSave = (input) => {
+    const connections = [ConnectionHandler.getConnectionID('root', 'UsersPage_users')]
+
     mutation({
-      variables: { id, input },
+      variables: { input, id, connections },
       onCompleted: () => {
-        navigate(routes.users())
+        // navigate(routes.users())
       },
       onError: setError,
     })
+  }
 
   // The 'new' ID will fail and give a null, which is accurate for creating a new one
   const data = useLazyLoadQuery<EditUserPageQuery>(EditUserPageReq, { id })

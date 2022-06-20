@@ -39,8 +39,18 @@ export const schema = gql`
     country: String
   }
 
+  interface ErrorInterface {
+    message: String
+  }
+
+  type CreateUserPayload {
+    userId: ID
+    user: User
+    # errors: [ErrorInterface!]!
+  }
+
   type Mutation {
-    createUser(input: CreateUserInput!): User! @skipAuth
+    createUser(input: CreateUserInput!): CreateUserPayload! @skipAuth
     updateUser(id: ID!, input: UpdateUserInput!): User! @skipAuth
     deleteUser(id: ID!): User! @skipAuth
   }

@@ -1,7 +1,7 @@
 import type { Prisma } from '@prisma/client'
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection'
 import { db } from 'src/lib/db'
-import { QueryusersArgs } from '../../../types/graphql'
+import { CreateUserPayload, MutationcreateUserArgs, QueryusersArgs } from '../../../types/graphql'
 
 export const users = (args: QueryusersArgs) => {
   // if (!args.first && !args.last) throw new Error('Need first or last arg')
@@ -22,14 +22,15 @@ export const user = ({ id }: Prisma.UserWhereUniqueInput) => {
   })
 }
 
-interface CreateUserArgs {
-  input: Prisma.UserCreateInput
-}
-
-export const createUser = ({ input }: CreateUserArgs) => {
-  return db.user.create({
+export const createUser = async ({ input }: MutationcreateUserArgs): Promise<CreateUserPayload> => {
+  const user = await db.user.create({
     data: input,
   })
+
+  return {
+    user,
+    userId: user.id,
+  }
 }
 
 interface UpdateUserArgs extends Prisma.UserWhereUniqueInput {

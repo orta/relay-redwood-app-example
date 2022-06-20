@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1d974e625db1b2ff6a6b4c42fc0ec212>>
+ * @generated SignedSource<<ed56852a39db413f38dadc812ff30fd6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,8 +15,8 @@ export type UsersPageQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"UsersList_query">;
 };
 export type UsersPageQuery = {
-  variables: UsersPageQuery$variables;
   response: UsersPageQuery$data;
+  variables: UsersPageQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -24,7 +24,7 @@ var v0 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 10
+    "value": 50
   }
 ];
 return {
@@ -133,7 +133,7 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": "users(first:10)"
+        "storageKey": "users(first:50)"
       },
       {
         "alias": null,
@@ -147,12 +147,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bdbe35621758fdae0eeaacbcbc0c42c5",
+    "cacheID": "7a40a5b214ea5c38ca09af1001984646",
     "id": null,
     "metadata": {},
     "name": "UsersPageQuery",
     "operationKind": "query",
-    "text": "query UsersPageQuery {\n  ...UsersList_query\n}\n\nfragment UsersList_query on Query {\n  users(first: 10) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query UsersPageQuery {\n  ...UsersList_query\n}\n\nfragment UsersList_query on Query {\n  users(first: 50) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

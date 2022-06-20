@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<69e7ba78fed977528f09e00eab404a25>>
+ * @generated SignedSource<<35600973a7df95743e72eab329b5b2c0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,8 +18,8 @@ export type UsersListQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"UsersList_query">;
 };
 export type UsersListQuery = {
-  variables: UsersListQuery$variables;
   response: UsersListQuery$data;
+  variables: UsersListQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -30,7 +30,7 @@ var v0 = [
     "name": "after"
   },
   {
-    "defaultValue": 10,
+    "defaultValue": 50,
     "kind": "LocalArgument",
     "name": "first"
   }
@@ -167,16 +167,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5f74f2e854b9ddf5e2728eac12ee83fb",
+    "cacheID": "819a57bb4ad8efda2f2e4bb7a1cdaf55",
     "id": null,
     "metadata": {},
     "name": "UsersListQuery",
     "operationKind": "query",
-    "text": "query UsersListQuery(\n  $after: String\n  $first: Int = 10\n) {\n  ...UsersList_query_2HEEH6\n}\n\nfragment UsersList_query_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query UsersListQuery(\n  $after: String\n  $first: Int = 50\n) {\n  ...UsersList_query_2HEEH6\n}\n\nfragment UsersList_query_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "380be258f69973dd48eae1f5186944f8";
+(node as any).hash = "bc0fd74978d6eea8910c2b433ee1d73b";
 
 export default node;

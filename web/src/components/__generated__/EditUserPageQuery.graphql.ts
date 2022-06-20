@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<25fe756cbef551a348c84fa8b71ece4b>>
+ * @generated SignedSource<<81bd16956750c26852a2d859e1728779>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,8 +19,8 @@ export type EditUserPageQuery$data = {
   } | null;
 };
 export type EditUserPageQuery = {
-  response: EditUserPageQuery$data;
   variables: EditUserPageQuery$variables;
+  response: EditUserPageQuery$data;
 };
 
 const node: ConcreteRequest = (function(){
