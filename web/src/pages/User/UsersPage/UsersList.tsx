@@ -4,10 +4,10 @@ import { UsersListQuery } from 'src/components/__generated__/UsersListQuery.grap
 import { UsersList_query$key } from 'src/components/__generated__/UsersList_query.graphql'
 
 const UsersList = (props: { query: UsersList_query$key }) => {
-  const { data } = usePaginationFragment<UsersListQuery, UsersList_query$key>(
+  const { data, loadNext } = usePaginationFragment<UsersListQuery, UsersList_query$key>(
     graphql`
       fragment UsersList_query on Query
-      @argumentDefinitions(first: { type: "Int", defaultValue: 50 }, after: { type: "String" })
+      @argumentDefinitions(first: { type: "Int", defaultValue: 10 }, after: { type: "String" })
       @refetchable(queryName: "UsersListQuery") {
         users(first: $first, after: $after) @connection(key: "UsersPage_users") {
           edges {
@@ -35,6 +35,8 @@ const UsersList = (props: { query: UsersList_query$key }) => {
           <Link to={routes.user({ id: user.id })}>{user.name}</Link>
         </li>
       ))}
+
+      <button onClick={() => loadNext(1)}>load more</button>
 
       {!users.length && <NoUsers />}
     </div>

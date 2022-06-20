@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ed56852a39db413f38dadc812ff30fd6>>
+ * @generated SignedSource<<f06a6ad13ade1fcf4ecbc91287639907>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,7 +24,7 @@ var v0 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 50
+    "value": 10
   }
 ];
 return {
@@ -133,7 +133,7 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": "users(first:50)"
+        "storageKey": "users(first:10)"
       },
       {
         "alias": null,
@@ -147,12 +147,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "7a40a5b214ea5c38ca09af1001984646",
+    "cacheID": "bdbe35621758fdae0eeaacbcbc0c42c5",
     "id": null,
     "metadata": {},
     "name": "UsersPageQuery",
     "operationKind": "query",
-    "text": "query UsersPageQuery {\n  ...UsersList_query\n}\n\nfragment UsersList_query on Query {\n  users(first: 50) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query UsersPageQuery {\n  ...UsersList_query\n}\n\nfragment UsersList_query on Query {\n  users(first: 10) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

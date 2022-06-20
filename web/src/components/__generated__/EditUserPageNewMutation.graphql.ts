@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0397bf179a2c5e48497915fba1d6694d>>
+ * @generated SignedSource<<cbfce9dc5ca02993498646b79f146d82>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,21 +17,21 @@ export type CreateUserInput = {
   profileViews: number;
 };
 export type EditUserPageNewMutation$variables = {
-  input: CreateUserInput;
   connections: ReadonlyArray<string>;
+  input: CreateUserInput;
 };
 export type EditUserPageNewMutation$data = {
   readonly createUser: {
-    readonly userId: string | null;
     readonly user: {
       readonly id: string;
       readonly name: string | null;
     } | null;
+    readonly userId: string | null;
   };
 };
 export type EditUserPageNewMutation = {
-  variables: EditUserPageNewMutation$variables;
   response: EditUserPageNewMutation$data;
+  variables: EditUserPageNewMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){

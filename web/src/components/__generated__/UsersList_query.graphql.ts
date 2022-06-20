@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<12923145c7757f034d5add214ce96a9c>>
+ * @generated SignedSource<<16fc51cf8b46434acc233442f3cc5707>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -41,7 +41,7 @@ return {
       "name": "after"
     },
     {
-      "defaultValue": 50,
+      "defaultValue": 10,
       "kind": "LocalArgument",
       "name": "first"
     }
@@ -163,6 +163,6 @@ return {
 };
 })();
 
-(node as any).hash = "bc0fd74978d6eea8910c2b433ee1d73b";
+(node as any).hash = "380be258f69973dd48eae1f5186944f8";
 
 export default node;
