@@ -5,4 +5,12 @@ export const schema = gql`
   interface Node {
     id: ID!
   }
+
+  type Query {
+    node(id: ID): Node! @skipAuth
+  }
+
+  type Mutation {
+    deleteNode(id: ID): Node! @requireAuth
+  }
 `
