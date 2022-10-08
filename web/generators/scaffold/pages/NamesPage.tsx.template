@@ -1,0 +1,84 @@
+import { AvailableRoutes, Link, routes } from "@redwoodjs/router"
+import { graphql, usePaginationFragment, useLazyLoadQuery } from "react-relay"
+import { DeleteNodeButton } from "src/components/admin/ui/DeleteNodeButton"
+import { SummaryTable } from "src/components/admin/ui/SummaryTable"
+import { Admin${singularPascalName}sPageConnection$key } from "src/__generated__/Admin${singularPascalName}sPageConnection.graphql"
+import { Admin${singularPascalName}sPageQuery } from "src/__generated__/Admin${singularPascalName}sPageQuery.graphql"
+
+export const Admin${singularPascalName}sQuery = graphql`
+  query Admin${singularPascalName}sPageQuery($cursor: String, $first: Int = 10) {
+    ...Admin${singularPascalName}sPageConnection
+  }
+`
+
+export const ${singularPascalName}sConnection = graphql`
+  fragment Admin${singularPascalName}sPageConnection on Query @refetchable(queryName: "Admin${singularPascalName}sPageQueryRefetch") {
+    ${singularCamelName}s(first: $first, after: $cursor) @connection(key: "Admin${singularPascalName}sPageConnection_${singularCamelName}s") {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      edges {
+        node {
+          id
+          slug
+
+          <% editableColumns.forEach(column => { %>
+          ${column.name}<% }) %>
+        }
+      }
+    }
+  }
+`
+
+type PageParams = Parameters<AvailableRoutes["admin${singularPascalName}s"]>[0]
+
+const ${singularPascalName}sList = (_params: PageParams) => {
+  const res = useLazyLoadQuery<Admin${singularPascalName}sPageQuery>(Admin${singularPascalName}sQuery, { first: 10 })
+  const connection = usePaginationFragment<Admin${singularPascalName}sPageQuery, Admin${singularPascalName}sPageConnection$key>(${singularPascalName}sConnection, res)
+
+  const titles = ["Handle", "Email"]
+
+  const data = connection.data.${singularCamelName}s.edges.map((edge) => {
+    const ${singularCamelName} = edge.node
+    return [${singularCamelName}.id, ${singularCamelName}.slug]
+  })
+
+  const ${singularCamelName} = (i) => connection.data.${singularCamelName}s.edges[i].node
+
+  return (
+    <div>
+      <Link to={routes.adminNew${singularPascalName}()} className="rw-link">
+        Create ${singularPascalName}
+      </Link>
+
+      <SummaryTable
+        titles={titles}
+        data={data}
+        buttons={(i) => (
+          <>
+            <Link
+              to={routes.admin${singularPascalName}({ id: ${singularCamelName}(i).id })}
+              title={"Show ${singularCamelName} " + ${singularCamelName}(i).id + " detail"}
+              className="rw-button rw-button-small"
+            >
+              Show
+            </Link>
+            <Link
+              to={routes.adminEdit${singularPascalName}({ id: ${singularCamelName}(i).id })}
+              title={"Edit ${singularCamelName} " + ${singularCamelName}(i).id}
+              className="rw-button rw-button-small rw-button-blue"
+            >
+              Edit
+            </Link>
+            <DeleteNodeButton id={${singularCamelName}(i).id} />
+          </>
+        )}
+      />
+
+      {connection.hasNext && <button onClick={() => connection.loadNext(10)}>Load more ${singularCamelName}</button>}
+    </div>
+  )
+}
+
+export default ${singularPascalName}sList

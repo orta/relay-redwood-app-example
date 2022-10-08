@@ -1,0 +1,3 @@
+import Edit${singularPascalName}Page from "../Edit${singularPascalName}Page/Edit${singularPascalName}Page"
+
+export default () => <Edit${singularPascalName}Page id="new" />

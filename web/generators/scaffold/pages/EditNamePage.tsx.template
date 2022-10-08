@@ -1,0 +1,66 @@
+import ${singularPascalName}Form from "src/components/${singularPascalName}/${singularPascalName}Form"
+import type { AdminEdit${singularPascalName}PageQuery } from "src/__generated__/AdminEdit${singularPascalName}PageQuery.graphql"
+
+import { useLazyLoadQuery, useMutation } from "react-relay"
+
+import { graphql } from "react-relay"
+import { useState } from "react"
+import { AvailableRoutes } from "@redwoodjs/router"
+
+const Edit${singularPascalName}PageReq = graphql`
+  query AdminEdit${singularPascalName}PageQuery($id: ID!) {
+    ${singularCamelName}(id: $id) {
+      ...${singularPascalName}Form_${singularCamelName}
+    }
+  }
+`
+
+const EditMutation = graphql`
+  mutation AdminEdit${singularPascalName}PageMutation($id: ID!, $input: Update${singularPascalName}Input!) {
+    update${singularPascalName}(id: $id, input: $input) {
+      id
+    }
+  }
+`
+
+const CreateMutation = graphql`
+  mutation AdminEdit${singularPascalName}PageNewMutation($input: Create${singularPascalName}Input!) {
+    create${singularPascalName}(input: $input) {
+      id
+    }
+  }
+`
+
+type PageParams = Parameters<AvailableRoutes["adminEdit${singularPascalName}"]>[0]
+const Edit${singularPascalName}Page = ({ id }: PageParams) => {
+  const [error, setError] = useState<Error>(undefined)
+  const [commitEdit, editLoading] = useMutation(EditMutation)
+  const [commitCreate, createLoading] = useMutation(CreateMutation)
+
+  const isNew = id === "new"
+  const mutation = isNew ? commitCreate : commitEdit
+
+  const onSave = (input) =>
+    mutation({
+      variables: { id, input },
+      onCompleted: () => document.location.reload(),
+      onError: setError,
+    })
+
+  // The 'new' ID will fail and give a null, which is accurate for creating a new one
+  const data = useLazyLoadQuery<AdminEdit${singularPascalName}PageQuery>(Edit${singularPascalName}PageReq, { id })
+
+  const loading = editLoading || createLoading
+  return (
+    <div className="rw-segment">
+      <header className="rw-segment-header">
+        <h2 className="rw-heading rw-heading-secondary">{isNew ? "New" : "Edit"} ${singularPascalName}</h2>
+      </header>
+      <div className="rw-segment-main">
+        <${singularPascalName}Form ${singularCamelName}={data.${singularCamelName}} onSave={onSave} error={error} loading={loading} />
+      </div>
+    </div>
+  )
+}
+
+export default Edit${singularPascalName}Page

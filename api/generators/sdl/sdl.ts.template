@@ -1,0 +1,42 @@
+export const schema = gql`
+  type ${singularPascalName} implements Node {
+    id: ID!
+    slug: String!
+
+    ${query.replace("id: String!", "").replace("slug: String!", "")}
+  }
+<% if (enums.length > 0) {%>
+<% enums.forEach((enumDef, idx)=> {%>  enum ${enums[idx].name} {<% enums[idx].values.forEach((enumDefValue, idk)=> { %>
+    ${enums[idx].values[idk].name}<% }) %>
+  }
+<%}) %><% } %>
+  type Query {
+    # Can't use RW auth here because this function is used by node
+    ${singularCamelName}(id: ID!): ${singularPascalName} @skipAuth
+    ${pluralCamelName}(first: Int, last: Int, before: String, after: String): ${singularPascalName}Connection! @requireAuth
+  }
+
+  type ${singularPascalName}Edge {
+    node: ${singularPascalName}!
+    cursor: String!
+  }
+
+  type ${singularPascalName}Connection {
+    edges: [${singularPascalName}Edge]
+    pageInfo: PageInfo!
+  }
+
+  input Create${singularPascalName}Input {
+    ${createInput}
+  }
+
+  input Update${singularPascalName}Input {
+    ${updateInput}
+  }<% if (crud) { %>
+
+  type Mutation {
+    create${singularPascalName}(input: Create${singularPascalName}Input!): ${singularPascalName}! @requireAuth
+    update${singularPascalName}(id: ID!, input: Update${singularPascalName}Input!): ${singularPascalName}! @requireAuth
+    delete${singularPascalName}(id: ID!): ${singularPascalName}! @skipAuth
+  }<% } %>
+`

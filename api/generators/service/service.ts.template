@@ -1,0 +1,60 @@
+import { findManyCursorConnection } from "@devoxa/prisma-relay-cursor-connection"
+import { db } from 'src/lib/db'
+import cuid from "cuid"
+import {dnull} from "dnull"
+import { QueryResolvers, MutationResolvers, ${singularPascalName}Resolvers } from "types/graphql"
+
+/** TODO: This needs to go in object identification
+
+import { delete${singularPascalName}, puzzle${singularPascalName} } from "../${pluralCamelName}/${pluralCamelName}"
+
+":${singularPascalName}": {
+    type: "${singularPascalName}",
+    get: ${singularCamelName},
+    delete: delete${singularPascalName},
+  },
+
+*/
+
+export const ${singularCamelName}: QueryResolvers["${singularCamelName}"] = (args) => {
+  const query = args.id.length > 10 ? { id: args.id } : { slug: args.id }
+  return db.${singularCamelName}.findUnique({ where: query })
+}
+
+export const ${pluralCamelName}:QueryResolvers["${pluralCamelName}"] = (args) => {
+  return findManyCursorConnection(
+    (args) => db.${singularCamelName}.findMany(args),
+    () => db.${singularCamelName}.count(),
+    args
+  )
+}
+
+export const create${singularPascalName}: MutationResolvers["create${singularPascalName}"] = (args) => {
+  const { input } = args
+  return db.${singularCamelName}.create({
+    data: {
+      id: cuid() + ":${singularPascalName}",
+      slug: cuid.slug(),
+      ...input,
+    },
+  })
+}
+
+
+export const update${singularPascalName}: MutationResolvers["update${singularPascalName}"] = (args) => {
+  const { id, input } = args
+  return db.${singularCamelName}.update({
+    data: dnull(input),
+    where: { id },
+  })
+}
+
+export const delete${singularPascalName}: MutationResolvers["delete${singularPascalName}"] = (args) => {
+  const {id} = args
+  return db.${singularCamelName}.delete({ where: { id } })
+}
+<% if (relations.length) { %>
+
+export const ${singularPascalName}: ${singularPascalName}Resolvers = {<% relations.forEach(relation => { %>
+  ${relation}: (_obj, { root }) => db.${singularCamelName}.findUnique({ where: { id: root.id } }).${relation}(),<% }) %>
+}<% } %>

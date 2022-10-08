@@ -1,0 +1,79 @@
+import {
+  Form,
+  FormError,
+  FieldError,
+  Label,
+  ${fieldsToImport.join(',\n  ')},
+  Submit,
+} from '@redwoodjs/forms'
+import { graphql, useFragment } from "react-relay"
+import { ${singularPascalName}Form_${singularCamelName}$key } from "src/__generated__/${singularPascalName}Form_${singularCamelName}.graphql"
+
+const formatDatetime = (value) => {
+  if (value) {
+    return value.replace(/:\d{2}\.\d{3}\w/, '')
+  }
+}
+
+type Props = { ${singularCamelName}?: ${singularPascalName}Form_${singularCamelName}$key }
+type EditForm = { onSave: (data: any, id?: string) => void; loading: boolean; error?: Error }
+
+const ${singularPascalName}Form = (props: Props & EditForm) => {
+  const ${singularCamelName} = useFragment(
+    graphql`
+      fragment ${singularPascalName}Form_${singularCamelName} on ${singularPascalName} {
+        id
+        <% editableColumns.forEach(column => { %>
+        ${column.name}<% }) %>
+      }
+    `,
+    props.${singularCamelName}
+  )
+
+  const form = useForm<Update${singularPascalName}Input>({
+      defaultValues: {<% editableColumns.forEach(column => { %>
+        ${column.singularCamelName}: ${singularCamelName}?.<%= column.name %>,
+<% }) %>
+      }
+  })
+
+  return (
+    <div className="rw-form-wrapper">
+      <Form formMethods={form}  onSubmit={(data) => props.onSave(data, ${singularCamelName}?.id)} error={props.error}>
+        <FormError
+          error={props.error as any}
+          wrapperClassName="rw-form-error-wrapper"
+          titleClassName="rw-form-error-title"
+          listClassName="rw-form-error-list"
+        />
+<% editableColumns.forEach(column => { %>
+        <Label
+          name="${column.name}"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          ${column.label}
+        </Label>
+        <${column.component}
+          name="${column.name}"
+          className="form-control"
+          errorClassName="form-control form-control-error"<%= !column.validation ? '' : `
+          validation=${column.validation}` %>
+        />
+        <FieldError name="${column.name}" className="rw-field-error" />
+
+<% }) %>
+        <div className="rw-button-group">
+          <Submit
+            disabled={props.loading}
+            className="rw-button rw-button-blue"
+          >
+            Save
+          </Submit>
+        </div>
+      </Form>
+    </div>
+  )
+}
+
+export default ${singularPascalName}Form

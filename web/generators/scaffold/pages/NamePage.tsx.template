@@ -1,0 +1,49 @@
+import { Link, routes, AvailableRoutes } from "@redwoodjs/router"
+import { DeleteNodeButton } from "src/components/admin/ui/DeleteNodeButton"
+import { graphql, useLazyLoadQuery } from "react-relay"
+import { PresentMeta, PresentModel } from "src/components/admin/UI"
+import { Admin${singularPascalName}PageQuery } from "src/__generated__/Admin${singularPascalName}PageQuery.graphql"
+
+export const Getter = graphql`
+  query Admin${pascalName}PageQuery($id: ID!) {
+    ${singularCamelName}(id: $id) {
+      id
+      slug
+
+      createdAt
+      updatedAt
+
+      <% editableColumns.forEach(column => { %>
+      ${column.name}<% }) %>
+    }
+  }
+`
+
+type PageParams = Parameters<AvailableRoutes["admin${singularPascalName}"]>[0]
+const ${singularPascalName} = (props: PageParams) => {
+  const { ${singularCamelName} } = useLazyLoadQuery<Admin${singularPascalName}PageQuery>(Getter, { id: props.id })
+
+  const meta: PresentMeta[] = [
+    // { type: "string", display: "Email", value: ${singularCamelName}.email },
+    // { type: "string", display: "handle", value: ${singularCamelName}.${singularCamelName}name },
+    // { type: "time", display: "Created At", value: ${singularCamelName}.createdAt },
+  ]
+
+  const title = "${singularPascalName}: " + ${singularCamelName}.slug
+  const subtitle = ${singularCamelName}.id
+
+  return (
+    <>
+      <PresentModel meta={meta} title={title} subtitle={subtitle}></PresentModel>
+
+      <nav className="rw-button-group">
+        <Link to={routes.adminEdit${singularPascalName}({ id: ${singularCamelName}.id })} className="rw-button rw-button-blue">
+          Edit
+        </Link>
+        <DeleteNodeButton id={${singularCamelName}.id} />
+      </nav>
+    </>
+  )
+}
+
+export default ${singularPascalName}
