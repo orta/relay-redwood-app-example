@@ -1,5 +1,7 @@
 # Redwood with Relay
 
+( 2024 edit: this is all pretty much accurate still with modern Redwood and Relay, we also have shipped the generator templates used [on puzzmo.com here](https://github.com/puzzmo-com/redwood-relay-templates) )
+
 Relay is a great GraphQL API client for building scalable GraphQL driven projects. The mindshare for GraphQL clients is a bit like type-systems in JS a few years ago, the vast majority of people use JavaScript (Apollo) and love the freedom and flexibility in the language (Apollo is a good GraphQL client and has a really low barrier to entry like JS). However, if you work with a solid type system in JS, you're _very_ unlikely to go back.
 
 Relay is TypeScript to Apollo's JavaScript, featuring an incredibly tight feedback cycle and the removal of an entire suite of developer and user concerns in exchange for some restraints on how you build.
@@ -12,8 +14,6 @@ This example repo is set up with:
 
 - Relay 14, which is the [new Rust compiler](https://relay.dev/blog/2021/12/08/introducing-the-new-relay-compiler/)
 - [RedwoodJS 1.0rc1](https://community.redwoodjs.com/t/redwood-v1-0-0-rc-is-now-available/2579/5)
-
-Notes: `yarn rw build` doesn't seem to work with suspense yet
 
 ## Setting up the client
 
